@@ -12,8 +12,8 @@
 **Git-статистика:**
 - 👨‍💻 Разработчик: Джабраилов (1 контрибьютор)
 - 📅 Период разработки: 2026 г.
-- 📝 Всего файлов: ~70+
-- 📊 Размер кода: ~8 500 LOC
+- 📝 Всего коммитов: 9
+- 📊 Размер кода: ~9 000 LOC
 - 🔄 Регулярные коммиты на протяжении всего проекта
 
 ## Стек технологий
@@ -64,7 +64,7 @@
 │   ├── 04-database/         # ER, DDL
 │   └── 05-design/           # Sequence-диаграммы
 │
-├── 📄 ПИЖ1-5_Джабраилов.docx  # Пояснительная записка
+├── 📄 ПИЖ_Пояснительная_записка.docx  # Пояснительная записка
 ├── 🐳 docker-compose.yml
 └── 📖 README.md
 ```
@@ -95,18 +95,18 @@ docker-compose up -d
 ## Git-статистика 📊
 
 - 👨‍💻 Разработчик: Джабраилов (1 контрибьютор)
-- 📅 Период: 01.03.2026 — 30.05.2026
-- 📝 Коммитов: 47
-- 📊 Коммитов в день: 2.9
+- 📅 Период: 2026 г.
+- 📝 Коммитов: 9
 
-> *Скриншоты добавьте после пуша на GitHub:*
+> **📸 Скриншоты GitHub (добавьте после пуша):**
 > 1. Зайдите в репозиторий → **Insights** → **Contributors**
-> 2. Сделайте скриншот Commit Activity — сохраните как `docs/images/git-commit-activity.png`
-> 3. Прокрутите ниже — скриншот Punch Card — `docs/images/git-punch-card.png`
-> 4. На главной странице — блок Languages — `docs/images/git-languages.png`
-
-![Commit Activity](docs/images/git-commit-activity.png)
-![Punch Card](docs/images/git-punch-card.png)
+> 2. Скриншот Commit Activity → `docs/images/git-commit-activity.png`
+> 3. Ниже — Punch Card → `docs/images/git-punch-card.png`
+> 4. На главной — Languages → `docs/images/git-languages.png`
+>
+> *Пример:*
+> ![Commit Activity](docs/images/git-commit-activity.png)
+> ![Punch Card](docs/images/git-punch-card.png)
 
 ---
 
@@ -185,8 +185,8 @@ docker-compose up -d
 ## Оценка по COCOMO
 | Параметр | Значение |
 |----------|:--------:|
-| Размер кода | ~8 500 LOC |
-| Трудоёмкость | 8.6 человеко-месяца |
+| Размер кода | ~9 000 LOC |
+| Трудоёмкость | 9.1 человеко-месяца |
 | Время разработки | ~6 месяцев |
 | Средний размер команды | 2-3 разработчика |
 | Тип проекта | Органический |
