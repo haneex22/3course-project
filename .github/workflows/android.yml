@@ -43,6 +43,9 @@ jobs:
       - name: Run unit tests
         run: ./gradlew testDebugUnitTest
 
+      - name: Check gradle-wrapper availability
+        run: ls -la gradle/wrapper/gradle-wrapper.jar
+
       - name: Build debug APK
         run: ./gradlew assembleDebug
 
