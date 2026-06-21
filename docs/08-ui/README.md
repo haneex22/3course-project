@@ -65,13 +65,13 @@
 
 ### Рисунок 8.7 — Профиль пользователя
 
-![Список неподтверждённых клиентов](images/unverified_clients_screen.png)
+![Профиль пользователя](images/profile_screen.png)
 
 ---
 
 ### Рисунок 8.8 — Панель администратора
 
-![Список неподтверждённых клиентов](images/unverified_clients_screen.png)
+![Панель администратора](images/admin_panel_screen.png)
 
 ---
 
