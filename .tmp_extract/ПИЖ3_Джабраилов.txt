@@ -1,0 +1,249 @@
+МИНИCTEPCTBO НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ
+Федеральное государственное автономное образовательное учреждение
+высшего образования
+«СЕВЕРО-КАВКАЗСКИЙ ФЕДЕРАЛЬНЫЙ УНИВЕРСИТЕТ»
+Институт перспективной инженерии
+Департамент цифровых робототехнических систем и электроники
+Отчет к лабораторной работе № 3
+Тема: Проектирование архитектурного каркаса 
+Дисциплина: «Программная инженерия»
+Ставрополь 2026
+Лабораторная работа №3
+Проектирование архитектурного каркаса 
+Цель работы: cпроектировать многослойную архитектуру программной системы на основе паттерна PCMEF с учётом выбранной траектории разработки (Desktop/Web/Mobile).
+Краткое описание проекта
+Предлагается разработать мобильное приложение, интегрированное с информационной системой прокатной компании. Приложение позволит клиенту искать и бронировать автомобили, проходить идентификацию, оплачивать аренду, получать договор и уведомления, а сотрудникам - управлять автопарком, выдачей, возвратом и аналитикой.
+Перечень решаемых задач
+Сократить время оформления аренды минимум на 50%.
+Повысить долю онлайн-бронирований до 70% и выше.
+Снизить количество ошибок в расписании, выдаче и возврате автомобилей на 85-90%.
+Увеличить коэффициент загрузки автопарка на 20-25%.
+Краткая характеристика проекта
+Информационная система обеспечивает сквозную автоматизацию процессов удаленного поиска, краткосрочного бронирования, онлайн-оплаты и последующего контроля выдачи/возврата транспортных средств. Мобильное приложение служит единой точкой взаимодействия клиента с сервисом проката, в то время как серверная часть обеспечивает централизованное выполнение жестких бизнес-правил компании.
+Основные акторы системы
+Ключевые use cases
+UC-001: Авторизоваться в системе 
+UC-002: Просмотреть каталог автомобилей 
+UC-003: Забронировать автомобиль 
+UC-004: Оплатить аренду 
+UC-005: Загрузить документы 
+UC-006: Проверить документы клиента 
+UC-007: Выдать автомобиль 
+UC-008: Принять автомобиль (возврат) 
+UC-009: Продлить аренду 
+UC-010: Управлять автопарком 
+UC-011: Сформировать отчет 
+Основные сущности Domain Model
+2. Выбор и обоснование архитектурного стиля
+Обоснование выбора PCMEF 
+Разделение ответственности: Слои пользовательского интерфейса полностью изолированы на мобильном клиенте (Presentation), тогда как критическая бизнес-логика и правила тарификации инкапсулированы на сервере (Mediator). 
+Обеспечение оффлайн-режима: Мобильная среда характеризуется нестабильным интернет-соединением. Модификация PCMEF за счет локального кэширования (Local Cache) позволяет клиенту просматривать ранее сохраненный каталог машин без доступа к сети. 
+Безопасность данных: Чувствительные данные (хэши паролей, финансовые транзакции) обрабатываются исключительно на сервере в закрытом контуре СУБД, не перегружая память телефона. 
+Тестируемость: Изоляция слоев позволяет тестировать бизнес-сервисы (Mediator) независимо от особенностей рендеринга Flutter-компонентов на клиенте. 
+Рассмотренные альтернативы
+Таблица распределения слоёв PCMEF для Mobile-траектории
+3. Диаграмма пакетов PCMEF (Mobile)
+Описание каждого слоя
+Presentation (мобильный клиент)
+Назначение: Отвечает за визуализацию данных, отрисовку графического интерфейса пользователя (UI) и обработку пользовательских жестов (нажатия, свайпы). Вся логика этого слоя сведена к рендерингу.
+Ключевые классы: CatalogScreen, BookingScreen, ProfileScreen
+Технологии: Android SDK, Jetpack Compose, XML Layouts, Navigation Component
+State Management (мобильный клиент)
+Назначение: Служит «мозгом» мобильного клиента. Этот слой отделяет интерфейс от данных. Он принимает события от UI (например, «пользователь нажал кнопку фильтрации»), запрашивает данные из сети или кэша, преобразует их в новое состояние (State) и реактивно отправляет обратно в Presentation слой для перерисовки экрана.
+Ключевые классы: CatalogBloc, AuthBloc
+Технологии: Android ViewModel, LiveData, StateFlow, Coroutines Flow
+API Client (мобильный клиент)
+Назначение: Инкапсулирует в себе всю логику межпроцессного взаимодействия с удаленным сервером. Отвечает за создание асинхронных HTTPS-соединений, сериализацию объектов Dart в JSON-строки и десериализацию ответов сервера. Также этот слой автоматически прикрепляет токен безопасности (JWT) к каждому запросу.
+Ключевые классы: CarApiClient, AuthInterceptor
+Технологии: Retrofit, OkHttp, Moshi/Gson, Kotlin Coroutines
+Local Cache (мобильный клиент)
+Назначение: обеспечивает автономность (оффлайн-режим) мобильного приложения. Если у клиента пропал интернет, слой State Management обращается не к сети, а к этому слою, чтобы показать сохраненный список машин и историю поиска.
+Ключевые классы: LocalCarBox, SearchHistoryCache
+Технологии: Room, SQLite, Flow для наблюдения за кэшем
+Control (сервер)
+Назначение: Входная точка серверной части системы (граничный слой). Его задача — принять входящий HTTP-запрос от мобильного приложения, проверить валидность переданных данных (входной контроль DTO с помощью аннотаций @Valid), проверить права доступа пользователя (Spring Security) и передать вызов на уровень бизнес-логики.
+Ключевые классы: CarRestController, BookingRestController
+Технологии: Spring Boot, @RestController, @Valid
+Mediator (сервер)
+Назначение: бизнес-логика системы (правила выдачи, расчёт штрафов, бронирование).
+Ключевые классы: CarRentServiceImpl, PaymentServiceImpl
+Технологии: Spring Service, @Transactional
+Entity (сервер)
+Назначение: бизнес-сущности, отображаемые на базу данных.
+Ключевые классы: Car, Reservation
+Технологии: JPA, Hibernate, @Entity
+Foundation (сервер)
+Назначение: доступ к данным, CRUD-операции, кастомные запросы.
+Ключевые классы: CarRepository, ReservationRepository
+Технологии: Spring Data JPA, @Repository
+State Management → API Client (Интерфейсы сетевого клиента)
+// Сетевой контракт на мобильном клиенте (Dart / Flutter)
+abstract class CarApiClient {
+  Future<List<CarDto>> getAvailableCars(String carClass, String startDate, String endDate);
+  Future<ReservationDto> bookCar(int carId, String start, String end);
+}
+Интерфейс Mediator → Foundation (Repository)
+// Серверный репозиторий для доступа к сущностям Reservation
+@Repository
+public interface ReservationRepository extends JpaRepository<Reservation, UUID> {
+    @Query("SELECT r FROM Reservation r WHERE r.client.id = :clientId AND r.status = 'ACTIVE'")
+    List<Reservation> findActiveReservationsByClientId(@Param("clientId") Long clientId);
+    @Modifying
+    @Query("UPDATE Reservation r SET r.status = 'CANCELLED' WHERE r.status = 'PENDING' AND r.createdAt < :timeout")
+    void cancelOverdueReservations(@Param("timeout") LocalDateTime timeout);
+}
+Таблица интерфейсов с описанием методов
+5. Анализ зависимостей
+Таблица зависимостей между слоями
+Граф зависимостей
+Mobile Client:
+  Presentation → State Management → API Client
+                          ↓
+                   Local Cache
+Сервер:
+  Control → Mediator → Entity
+                 ↓
+            Foundation → Database
+Межпроцессное взаимодействие:
+  API Client → Control (HTTP/JSON)
+Проверка отсутствия циклических зависимостей
+На клиенте: Presentation -> State Management -> API Client -> Local Cache. Обратные ссылки отсутствуют, так как слои кэша и сети изолированы от UI-компонентов и отдают только чистые структуры данных (DTO).  
+На сервере: Control -> Mediator -> Foundation -> Database. Сущности (Entity) не содержат ссылок на инфраструктуру и репозитории, выполняя требования чистой направленности графа зависимостей вниз.  
+6. Адаптация PCMEF под Mobile-траекторию
+Особенности адаптации для мобильной траектории
+Разрыв слоя Presentation и Control: Они разделены физической сетью.Presentation живет на смартфонах клиентов, а Control преобразован в REST-контроллеры бэкенда. 
+Внедрение State Management: Мобильные операционные системы динамически уничтожают и пересоздают контекст экранов (например, при повороте устройства). Слой управления состоянием защищает бизнес-данные сессии от уничтожения. 
+Разделение сущностей (Entities): Сущности на сервере (@Entity JPA) описывают полные реляционные схемы со связями OneToMany. Локальные сущности на клиенте представляют собой плоские, легковесные структуры для сохранения в key-value хранилище мобильного устройства
+Сравнительная таблица с классическим PCMEF
+Обоснование необходимости адаптации
+Физическое разделение – клиент и сервер работают на разных устройствах.
+Сетевая нестабильность – нужен оффлайн-режим (Local Cache).
+Реактивность UI – требуется State Management для эффективного обновления экранов.
+Безопасность – чувствительная логика и данные должны быть на сервере.
+Экономия трафика – кэширование уменьшает число запросов.
+ПРИЛОЖЕНИЕ
+@startuml
+left to right direction
+title Архитектурный каркас ИС Проката автомобилей (PCMEF Mobile)
+package "Мобильное приложение (Flutter Client)" {
+    package "Layer: Presentation" {
+        [CatalogScreen] as UI_Catalog
+        [BookingScreen] as UI_Booking
+        [ProfileScreen] as UI_Profile
+    }
+    package "Layer: State Management" {
+        [CatalogBloc] as Bloc_Catalog
+        [BookingBloc] as Bloc_Booking
+    }
+    package "Layer: API Client" {
+        [CarApiClient] as API_Car
+        [BookingApiClient] as API_Booking
+        [HttpInterceptor] as JWT_Auth
+    }
+    package "Layer: Local Cache" {
+        database "Hive / Local DB" as Hive_DB
+        [LocalCarCache] as Cache_Car
+    }
+}
+package "Серверная инфраструктура (Spring Boot Application)" {
+    package "Layer: Control" {
+        [CarRestController] as Ctrl_Car
+        [BookingRestController] as Ctrl_Booking
+    }
+    package "Layer: Mediator" {
+        [CarRentService] as Svc_Car
+        [PaymentService] as Svc_Pay
+    }
+    package "Layer: Entity" {
+        [CarEntity] as Ent_Car
+        [ReservationEntity] as Ent_Res
+    }
+    package "Layer: Foundation" {
+        [CarRepository] as Repo_Car
+        [ReservationRepository] as Repo_Res
+    }
+    database "PostgreSQL (Docker)" {
+        [cars_table]
+        [reservations_table]
+    }
+}
+' Связи зависимостей внутри клиента
+UI_Catalog --> Bloc_Catalog : "dispatch events"
+UI_Booking --> Bloc_Booking : "dispatch events"
+Bloc_Catalog --> API_Car : "async fetch"
+Bloc_Catalog --> Cache_Car : "read/write offline"
+Cache_Car --> Hive_DB
+' Сетевой мост
+API_Car ----> Ctrl_Car : "HTTPS / REST JSON"
+API_Booking ----> Ctrl_Booking : "HTTPS / REST JSON"
+' Связи зависимостей на сервере
+Ctrl_Car --> Svc_Car : "execute"
+Ctrl_Booking --> Svc_Pay : "execute"
+Svc_Car --> Ent_Car : "mutate state"
+Svc_Car --> Repo_Car : "query data"
+Repo_Car --> [cars_table] : "JDBC"
+Repo_Res --> [reservations_table] : "JDBC"
+@enduml
+ |  | Выполнил:
+ |  | Студент группы ПИЖ-б-о-23-1 направление подготовки 09.03.04 «Программная инженерия»
+Джабраилов Бекхан Магомедович
+Проверил:
+Потапов Иван Романович
+Ассистент ДЦРСИЭ
+Актер | Описание
+Клиент | Конечный пользователь мобильного приложения, который ищет, бронирует автомобили и оплачивает аренду.
+Менеджер проката | Операционный пользователь, который контролирует бронирования и анализирует отчеты.
+Сотрудник выдачи | Сотрудник, отвечающий за выдачу/возврат авто и проверку документов клиента.
+Администратор | Пользователь, управляющий автопарком, каталогом и системными настройками.
+Платежная система | Внешняя система (REST API) для обработки онлайн-транзакций.
+Сущность | Тип | Описание
+User | Entity | Общий профиль пользователя системы.
+ClientProfile | Entity | Данные клиента, необходимые для аренды (связан с User).
+Car | Entity | Автомобиль в автопарке компании.
+Reservation | Entity | Запись о бронировании автомобиля.
+RentalRecord | Entity | Запись о фактической выдаче и возврате.
+DriverLicense | Entity | Данные водительского удостоверения.
+Money | Value Object | Денежная сумма с указанием валюты.
+CarStatus | Enum | Статус авто (AVAILABLE, RESERVED, RENTED, MAINTENANCE).
+Альтернатива | Причина отказа
+Только локальное приложение (SQLite) | Невозможность синхронизации: Изменения статусов автомобилей (например, бронирование машины одним клиентом) должны мгновенно отражаться у всех пользователей. Хранение данных только на устройствах привело бы к критическим конфликтам и повторным арендам одного авто.
+Толстый клиент с прямой БД | Невозможность синхронизации: Изменения статусов автомобилей (например, бронирование машины одним клиентом) должны мгновенно отражаться у всех пользователей. Хранение данных только на устройствах привело бы к критическим конфликтам и повторным арендам одного авто.
+Слой | Расположение | Реализация
+Presentation | Мобильный клиент | Android (Activity/Compose/Fragments)
+State Management | Мобильный клиент | ViewModel, LiveData/StateFlow
+API Client | Мобильный клиент | Dio / Retrofit client, DTO, JWT interceptors
+Local Cache | Мобильный клиент | Hive / Floor, Локальные SQLite сущности
+Control | Сервер | Spring REST Controllers, Spring Security
+Mediator | Сервер | Spring Services, @Transactional аннотации
+Entity | Сервер | JPA (Java Persistence API), Hibernate
+Foundation | Сервер | Spring Data JPA Repositories
+Database | Сервер | PostgreSQL 15, Реляционная СУБД
+Имя интерфейса / Компонент | Программный метод (Сигнатура) | Назначение и логика работы метода
+CarApiClient (Dart) | Future<List<CarDto>>
+getAvailableCars(CarFilter filter) | Клиентская сеть: Формирует асинхронный сетевой GET-запрос к серверу, передавая параметры фильтрации (класс авто, даты проката) в формате JSON.
+BookingApiClient (Dart) | Future<ReservationDto> bookCar(ReservationRequest req) | Клиентская сеть: Отправляет POST-запрос на бэкенд для инициации процесса бронирования выбранного транспортного средства.
+ICarService (Java) | List<CarResponseDto> searchCars(CarFilterDto filter) | Бизнес-логика: Принимает десериализованные сервером параметры поиска, валидирует их и возвращает отфильтрованный список доступных машин.
+IReservationService (Java) | ReservationResponseDto createReservation(Long clientId, Long carId, LocalDateTime start, LocalDateTime end) | Бизнес-логика: Запускает транзакционный сценарий проверки ограничений (возраст, стаж, пересечение дат) и формирует первичную запись бронирования в статусе PENDING.
+IReservationService (Java) | void confirmPayment(UUID reservationId, String transactionId) | Бизнес-логика: Вызывается автоматически при успешном ответе от платежного шлюза. Переводит бронь в статус CONFIRMED, а автомобиль в статус RESERVED.
+IPaymentService (Java) | PaymentResult holdDeposit(Long clientId, Money amount) | Бизнес-логика: Взаимодействует с API внешнего Банка-эквайера для холдирования (заморозки) гарантийного депозита (залога) на карте клиента.
+CarRepository (Java) | List<Car> findAvailableCarsForDates(LocalDateTime start, LocalDateTime end) | Доступ к данным: Выполняет оптимизированный SQL-запрос к PostgreSQL для исключения машин, находящихся в ремонте (MAINTENANCE) или занятых на эти даты.
+ReservationRepository (Java) | List<Reservation> findActiveReservationsByClientId(Long id) | Доступ к данным: Проверяет базу данных на наличие у текущего клиента других активных договоров для исключения параллельного проката нескольких авто одной учетной записью.
+ReservationRepository (Java) | void cancelOverdueReservations(LocalDateTime timeout) | Доступ к данным: Асинхронно обновляет статусы просроченных броней в PostgreSQL, на которые не поступила оплата в течение 15 минут, освобождая автомобили для каталога.
+От слоя | К слою | Тип связи
+Presentation | State Management | Наблюдение (Observer)
+State Management | API Client | Прямой вызов
+State Management | Local Cache | Чтение/запись
+API Client | Control | HTTP/REST
+Control | Mediator | Вызов методов
+Mediator | Entity | Чтение/изменение
+Mediator | Foundation | Вызов методов
+Entity | Foundation | Через JPA
+Foundation | Database | JDBC
+Аспект | Классический PCMEF (Desktop) | Mobile-адаптация
+Presentation | JVM (Swing/JavaFX) | Android (Activity/Compose)
+Control | JVM | REST Controllers на сервере
+Mediator | JVM | Spring Services на сервере
+Entity | JVM | JPA Entities на сервере
+Foundation | JVM | Spring Data Repositories
+Дополнительные слои | — | State Management, API Client, Local Cache на клиенте
+Межслойная связь | Вызов методов (JVM) | HTTP/JSON + локальные вызовы

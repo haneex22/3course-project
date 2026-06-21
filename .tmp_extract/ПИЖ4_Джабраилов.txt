@@ -1,0 +1,238 @@
+МИНИCTEPCTBO НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ
+Федеральное государственное автономное образовательное учреждение
+высшего образования
+«СЕВЕРО-КАВКАЗСКИЙ ФЕДЕРАЛЬНЫЙ УНИВЕРСИТЕТ»
+Институт перспективной инженерии
+Департамент цифровых робототехнических систем и электроники
+Отчет к лабораторной работе № 4
+Тема: Проектирование базы данных и объектно-реляционное отображение (ORM) 
+Дисциплина: «Программная инженерия»
+Ставрополь 2026
+Лабораторная работа №4.
+Проектирование базы данных и объектно-реляционное отображение (ORM) 
+Цель работы: освоить методику проектирования реляционной базы данных на основе объектной модели предметной области, включая нормализацию до третьей нормальной формы, создание DDL-скриптов и разработку стратегии объектно-реляционного отображения (ORM) для последующей реализации в слое Foundation архитектуры PCMEF.
+Краткое описание проекта
+Информационная система обеспечивает сквозную автоматизацию процессов удаленного поиска, краткосрочного бронирования, онлайн-оплаты и последующего контроля выдачи/возврата транспортных средств. Мобильное приложение служит единой точкой взаимодействия клиента с сервисом проката, в то время как серверная часть обеспечивает централизованное выполнение жестких бизнес-правил компании.
+Основные сущности Domain Model
+Атрибуты сущностей
+User: id, email, passwordHash, role, registrationDate.
+ClientProfile: userId, isVerified, bonusBalance, passportSeries, passportNumber, licenseNumber.
+Car: id, vin, licensePlate, modelName, currentMileage, status.
+Reservation: id, clientId, carId, startDateTime, endDateTime, status, amount, currency.
+RentalAgreement: id, reservationId, agreementNumber, signedAt, isActive.
+Payment: id, rentalAgreementId, transactionId, isSuccess, paymentType, amount, currency
+3. Проектирование базы данных
+3.1. ER-диаграмма (логическая модель)
+3.3. Обоснование нормализации (1НФ, 2НФ, 3НФ)
+Проверка 1НФ (Первая нормальная форма)
+Требование: Все атрибуты должны содержать атомарные значения, не должно быть повторяющихся групп.
+Проверка: В таблице client_profiles объекты-значения (Value Objects) PassportData и DriverLicense разбиты на атомарные столбцы (passport_series, passport_number, license_number). Объект Money разбит на amount и currency.
+Вывод: Все таблицы соответствуют 1НФ.
+Проверка 2НФ (Вторая нормальная форма)
+Требование: Таблица должна быть в 1НФ, и все неключевые атрибуты должны зависеть от полного первичного ключа.
+Проверка: У всех таблиц простой первичный ключ (одно поле id типа UUID).
+Вывод: Все таблицы автоматически соответствуют 2НФ.
+Проверка 3НФ (Третья нормальная форма)
+Требование: Таблица должна быть в 2НФ, и не должно быть транзитивных зависимостей.
+Проверка: В таблице reservations отсутствуют характеристики автомобиля (модель, VIN) — они вынесены в таблицу cars и ссылаются по внешнему ключу car_id. Транзитивные зависимости устранены.
+Вывод: Таблицы соответствуют 3НФ.
+3.4. Спецификация связей и внешних ключей
+3.5. Индексы и ограничения
+Индексы
+-- Поиск по email (авторизация)
+CREATE INDEX idx_users_email ON users(email);
+-- Поиск по статусу авто
+CREATE INDEX idx_cars_status ON cars(status);
+-- Брони по клиенту и статусу
+CREATE INDEX idx_reservations_client_status ON reservations(client_id, status);
+Ограничения CHECK
+-- Статус автомобиля
+ALTER TABLE cars ADD CONSTRAINT chk_car_status 
+CHECK (status IN ('AVAILABLE', 'RESERVED', 'RENTED', 'MAINTENANCE'));
+-- Статус бронирования
+ALTER TABLE reservations ADD CONSTRAINT chk_reservation_status 
+CHECK (status IN ('PENDING', 'CONFIRMED', 'ACTIVE', 'CANCELLED'));
+Уникальные ограничения
+-- Уникальный VIN и госномер
+ALTER TABLE cars ADD CONSTRAINT uk_cars_vin UNIQUE (vin);
+ALTER TABLE cars ADD CONSTRAINT uk_cars_license_plate UNIQUE (license_plate);
+4. DDL-скрипты (листинг SQL-кода)
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+-- 1. Таблица пользователей
+CREATE TABLE users (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(60) NOT NULL,
+    role VARCHAR(20) NOT NULL DEFAULT 'CLIENT',
+    registration_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+-- 2. Таблица профилей клиентов
+CREATE TABLE client_profiles (
+    user_id UUID PRIMARY KEY,
+    is_verified BOOLEAN DEFAULT FALSE,
+    bonus_balance INTEGER DEFAULT 0,
+    passport_series VARCHAR(10),
+    passport_number VARCHAR(20),
+    license_number VARCHAR(50),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+-- 3. Таблица автопарка
+CREATE TABLE cars (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    vin VARCHAR(17) NOT NULL UNIQUE,
+    license_plate VARCHAR(20) NOT NULL UNIQUE,
+    model_name VARCHAR(100) NOT NULL,
+    current_mileage BIGINT NOT NULL DEFAULT 0,
+    status VARCHAR(20) NOT NULL DEFAULT 'AVAILABLE',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+-- 4. Таблица бронирований
+CREATE TABLE reservations (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    client_id UUID NOT NULL,
+    car_id UUID NOT NULL,
+    start_date_time TIMESTAMP NOT NULL,
+    end_date_time TIMESTAMP NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
+    amount DECIMAL(10,2) NOT NULL,
+    currency VARCHAR(3) NOT NULL DEFAULT 'RUB',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (client_id) REFERENCES client_profiles(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE RESTRICT
+);
+-- 5. Таблица договоров аренды
+CREATE TABLE rental_agreements (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    reservation_id UUID NOT NULL UNIQUE,
+    agreement_number VARCHAR(100) NOT NULL UNIQUE,
+    signed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (reservation_id) REFERENCES reservations(id) ON DELETE RESTRICT
+);
+-- 6. Таблица платежей
+CREATE TABLE payments (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    rental_agreement_id UUID NOT NULL,
+    transaction_id VARCHAR(255) UNIQUE,
+    is_success BOOLEAN DEFAULT FALSE,
+    payment_type VARCHAR(50) NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    currency VARCHAR(3) NOT NULL DEFAULT 'RUB',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (rental_agreement_id) REFERENCES rental_agreements(id) ON DELETE CASCADE
+);
+-- =====================================================
+-- ФУНКЦИЯ ДЛЯ АВТОМАТИЧЕСКОГО ОБНОВЛЕНИЯ updated_at
+-- =====================================================
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+   NEW.updated_at = CURRENT_TIMESTAMP;
+   RETURN NEW;
+END;
+$$ language 'plpgsql';
+CREATE TRIGGER update_users_updated_at BEFORE UPDATE ON users FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+CREATE TRIGGER update_cars_updated_at BEFORE UPDATE ON cars FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+CREATE TRIGGER update_reservations_updated_at BEFORE UPDATE ON reservations FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+5. ORM-стратегия
+5.1. JPA-аннотации для ключевых сущностей
+Класс User (Entity)
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+    @Column(unique = true, nullable = false)
+    private String email;
+    @Column(name = "password_hash", nullable = false)
+    private String passwordHash;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserRole role;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private ClientProfile profile;
+    // constructors, getters, setters
+}
+Класс Car (Entity)
+@Entity
+@Table(name = "cars")
+public class Car {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+    @Column(unique = true, nullable = false, length = 17)
+    private String vin;
+    @Column(name = "license_plate", unique = true, nullable = false)
+    private String licensePlate;
+    @Column(name = "model_name", nullable = false)
+    private String modelName;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private CarStatus status;
+    @OneToMany(mappedBy = "car", fetch = FetchType.LAZY)
+    private List<Reservation> reservations = new ArrayList<>();
+    // constructors, getters, setters
+}
+Класс Reservation (Entity)
+@Entity
+@Table(name = "reservations")
+public class Reservation {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id", nullable = false)
+    private ClientProfile client;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "car_id", nullable = false)
+    private Car car;
+    @Column(name = "start_date_time", nullable = false)
+    private LocalDateTime startDateTime;
+    @Column(name = "end_date_time", nullable = false)
+    private LocalDateTime endDateTime;
+    @Embedded
+    private Money amount;
+    // constructors, getters, setters
+}
+5.2. Стратегия отображения связей
+5.3. Стратегия наследования
+В системе используется enum для ролей пользователя (CLIENT, MANAGER, ADMIN) и статусов (CarStatus, ReservationStatus) вместо наследования классов. Это обосновано тем, что:
+Поведение различается только правами доступа и состоянием объекта в конечных автоматах.
+Атрибуты одинаковы для всех ролей (базовый набор учетных данных хранится в таблице users).
+Это исключает необходимость применения сложных стратегий JPA (SINGLE_TABLE или JOINED) и упрощает запросы к БД, повышая производительность микросервисной архитектуры.
+ |  | Выполнил:
+ |  | Студент группы ПИЖ-б-о-23-1 направление подготовки 09.03.04 «Программная инженерия»
+Джабраилов Бекхан Магомедович
+Проверил:
+Потапов Иван Романович
+Ассистент ДЦРСИЭ
+Сущность | Тип | Описание
+User | Entity | Общий профиль пользователя системы.
+ClientProfile | Entity | Данные клиента, необходимые для аренды (связан с User).
+Car | Entity | Автомобиль в автопарке компании.
+Reservation | Entity | Запись о бронировании автомобиля.
+RentalRecord | Entity | Запись о фактической выдаче и возврате.
+DriverLicense | Entity | Данные водительского удостоверения.
+Money | Value Object | Денежная сумма с указанием валюты.
+CarStatus | Enum | Статус авто (AVAILABLE, RESERVED, RENTED, MAINTENANCE).
+ReservationStatus | Enum | Состояния брони
+Связь | Тип | Таблица | Поле | Связанная таблица | Действие при удалении
+User → ClientProfile | 1:1 | client_profiles | user_id | users | CASCADE
+ClientProfile → Reservation | 1:N | reservations | client_id | client_profiles | CASCADE
+Car → Reservation | 1:N | reservations | car_id | cars | RESTRICT
+Reservation → RentalAgreement | 1:1 | rental_agreements | reservation_id | reservations | RESTRICT
+RentalAgreement → Payment | 1:N | payments | rental_agreement_id | rental_agreements | CASCADE
+Тип связи | JPA-аннотация | Пример | Каскадирование | Fetch-тип
+Один-к-одному (1:1) | @OneToOne + @MapsId | User ↔ ClientProfile | ALL | LAZY
+Многие-к-одному (N:1) | @ManyToOne | Reservation → Car | - | LAZY
+Один-ко-многим (1:N) | @OneToMany(mappedBy = "...") | ClientProfile → Reservations | ALL | LAZY

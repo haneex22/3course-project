@@ -58,7 +58,6 @@
 │   ├── 04-database/         # ER, DDL
 │   ├── 05-design/           # Sequence-диаграммы
 │   └── images/              # Рендереные диаграммы
-├── 📄 ПИЖ_Пояснительная_записка.docx
 ├── 📄 docs/presentation.md  # Презентация к защите
 ├── 🐳 docker-compose.yml
 ├── 📄 LICENSE
@@ -94,13 +93,7 @@ docker-compose up -d
 - 📅 Период: 2026 г.
 - 📝 Коммитов: 12
 
-> **📸 Скриншоты GitHub (добавьте после пуша):**
-> 1. Зайдите в репозиторий → **Insights** → **Contributors**
-> 2. Скриншот Commit Activity → сохраните как `docs/images/git-commit-activity.png`
-> 3. Ниже — Punch Card → `docs/images/git-punch-card.png`
-> 4. На главной — Languages → `docs/images/git-languages.png`
->
-> *После добавления изображений:*
+> **📸 Скриншоты GitHub
 > ![Commit Activity](docs/images/git-commit-activity.png)
 > ![Punch Card](docs/images/git-punch-card.png)
 
