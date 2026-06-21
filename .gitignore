@@ -1,9 +1,12 @@
 # Maven
 target/
 **/target/
+
+# JAR/WAR — gradle-wrapper.jar НУЖЕН для Android сборки
 *.jar
 *.war
 *.ear
+!**/gradle-wrapper.jar
 
 # Gradle
 .gradle/
