@@ -23,9 +23,9 @@
 | Компонент | Технология |
 |-----------|------------|
 | Backend | Java 17 + Spring Boot 3.2 + Spring Security |
-| Database | PostgreSQL 16 + Flyway |
+| Database | PostgreSQL 16 |
 | ORM | Spring Data JPA / Hibernate |
-| API | REST + OpenAPI/Swagger |
+| API | REST |
 | Auth | JWT + BCrypt |
 | Mobile | Android (Kotlin + Jetpack Compose + Material 3) |
 | Network | Retrofit 2 + OkHttp + Coil |
@@ -98,6 +98,11 @@
 ### Запуск бэкенда (Docker)
 ```bash
 docker-compose up -d
+```  
+или  
+```bash
+Backend
+mvn spring-boot:run
 ```
 
 ### Запуск Android-приложения
@@ -106,6 +111,7 @@ docker-compose up -d
 3. Приложение автоматически подключится к `http://10.0.2.2:8080`
 
 ### Доступные эндпоинты
+- Сервер запустится на http://localhost:8080
 - Swagger UI: http://localhost:8080/swagger-ui.html
 - OpenAPI JSON: http://localhost:8080/v3/api-docs
 
@@ -120,7 +126,7 @@ docker-compose up -d
 
 - 👨‍💻 Разработчик: Джабраилов (1 контрибьютор)  
 - 📅 Период: 15.02.2026 – 01.06.2026.  
-- 📝 Коммитов: 23  
+- 📝 Коммитов: 27  
 - 👨‍💻 Покрытие тестами (Jacoco): 65%  
 
 📸 Скриншоты GitHub
@@ -181,24 +187,44 @@ docker-compose up -d
 
 ## Документация 📚
 
+## 📚 Документация проекта
+
 | Раздел | Файл | Описание |
 |--------|------|----------|
-| Бизнес-модель | [buc-diagram.md](docs/01-business-model/buc-diagram.md) | BUC-диаграмма |
-| | [context-diagram.md](docs/01-business-model/context-diagram.md) | IDEF0 контекстная диаграмма |
-| | [glossary.md](docs/01-business-model/glossary.md) | Глоссарий (16 терминов) |
-| | [swot.md](docs/01-business-model/swot.md) | SWOT-анализ |
-| | [roi.md](docs/01-business-model/roi.md) | Экономическая эффективность |
-| Требования | [use-case-diagram.md](docs/02-requirements/use-case-diagram.md) | Use Case диаграмма |
+| **Бизнес-модель** | [README.md](docs/01-business-model/README.md) | Описание этапа бизнес-моделирования |
+| | [buc-diagram.md](docs/01-business-model/buc-diagram.md) | Диаграмма бизнес-прецедентов (BUC) |
+| | [business-class-model.md](docs/01-business-model/business-class-model.md) | Модель бизнес-классов |
+| | [context-diagram.md](docs/01-business-model/context-diagram.md) | Контекстная диаграмма IDEF0 |
+| | [glossary.md](docs/01-business-model/glossary.md) | Глоссарий предметной области |
+| | [swot.md](docs/01-business-model/swot.md) | SWOT-анализ проекта |
+| | [roi.md](docs/01-business-model/roi.md) | Оценка экономической эффективности (ROI) |
+| **Требования** | [README.md](docs/02-requirements/README.md) | Описание этапа анализа требований |
+| | [use-case-diagram.md](docs/02-requirements/use-case-diagram.md) | Диаграмма вариантов использования |
 | | [domain-model.md](docs/02-requirements/domain-model.md) | Доменная модель |
-| | [use-case-specifications.md](docs/02-requirements/use-case-specifications.md) | Спецификации UC |
-| Архитектура | [pcmef-diagram.md](docs/03-architecture/pcmef-diagram.md) | PCMEF архитектура |
-| | [interfaces.md](docs/03-architecture/interfaces.md) | Интерфейсы слоёв |
-| | [adr.md](docs/03-architecture/adr.md) | Architectural Decision Records |
-| БД | [er-diagram.md](docs/04-database/er-diagram.md) | ER-диаграмма |
+| | [use-case-specifications.md](docs/02-requirements/use-case-specifications.md) | Спецификации вариантов использования |
+| **Архитектура** | [README.md](docs/03-architecture/README.md) | Описание архитектуры проекта |
+| | [pcmef-diagram.md](docs/03-architecture/pcmef-diagram.md) | Архитектура PCMEF |
+| | [interfaces.md](docs/03-architecture/interfaces.md) | Интерфейсы между слоями |
+| | [adr.md](docs/03-architecture/adr.md) | Architectural Decision Records (ADR) |
+| **База данных** | [README.md](docs/04-database/README.md) | Документация базы данных |
+| | [er-diagram.md](docs/04-database/er-diagram.md) | ER-диаграмма |
 | | [ddl.sql](docs/04-database/ddl.sql) | DDL-скрипт PostgreSQL |
-| Проектирование | [sequence-diagrams.md](docs/05-design/sequence-diagrams.md) | Sequence-диаграммы (5 UC) |
-| | [executive-summary.md](docs/05-design/executive-summary.md) | Executive Summary |
-| Защита | [presentation.md](docs/presentation.md) | План презентации |
+| | [wbs-gantt-cocomo.md](docs/04-database/wbs-gantt-cocomo.md) | WBS, диаграмма Ганта и оценка COCOMO |
+| **Детальное проектирование** | [README.md](docs/05-design/README.md) | Документация проектирования |
+| | [sequence-diagrams.md](docs/05-design/sequence-diagrams.md) | Диаграммы последовательности |
+| | [executive-summary.md](docs/05-design/executive-summary.md) | Краткое описание архитектурных решений |
+| **Тестирование** | [README.md](docs/06-testing/README.md) | План тестирования, результаты тестов и отчёт JaCoCo |
+| **Рефакторинг** | [README.md](docs/07-refactoring/README.md) | Анализ качества кода и применённых паттернов |
+| **Пользовательский интерфейс** | [README.md](docs/08-ui/README.md) | Описание экранов мобильного приложения |
+| **REST API** | [README.md](docs/09-api/README.md) | Документация REST API |
+| **Развёртывание** | [README.md](docs/10-deployment/README.md) | Развёртывание и администрирование системы |
+| **Руководства** | [README.md](docs/11-guides/README.md) | Руководства пользователей системы |
+| | [client-guide.md](docs/11-guides/client-guide.md) | Руководство пользователя |
+| | [manager-guide.md](docs/11-guides/manager-guide.md) | Руководство менеджера |
+| | [admin-guide.md](docs/11-guides/admin-guide.md) | Руководство администратора |
+| **Управление проектом** | [README.md](docs/12-project-management/README.md) | Планирование проекта, WBS, диаграмма Ганта, COCOMO и управление рисками |
+| **Итоговые материалы** | [Пояснительная записка.docx](docs/13-final-report/Пояснительная%20записка.docx) | Итоговая пояснительная записка |
+| | [Презентация.pptx](docs/13-final-report/Презентация.pptx) | Презентация для защиты проекта |
 
 ## Реализованные паттерны GoF
 - **State** — жизненный цикл бронирования (Pending → Confirmed → Active → Cancelled)
@@ -224,23 +250,6 @@ docker-compose up -d
 - ✅ Выдача и приём автомобилей (UC-007, UC-008)
 - ✅ Обработка ошибок с понятными сообщениями на русском
 
-## Оценка по COCOMO
-| Параметр | Значение |
-|----------|:--------:|
-| Размер кода | ~9 000 LOC |
-| Трудоёмкость | 9.1 человеко-месяца |
-| Время разработки | ~6 месяцев |
-| Средний размер команды | 2-3 разработчика |
-| Тип проекта | Органический |
-
-## Структура работ (WBS)
-Проект включает 6 основных блоков работ:
-1. Управление проектом и документация
-2. Анализ и проектирование (архитектура, БД, API)
-3. Разработка серверной части (Spring Boot)
-4. Разработка клиентской части (Android)
-5. Интеграция и развертывание (Docker, CI/CD)
-6. Тестирование (JUnit, Mockito)
 
 ### Авторы
 
