@@ -3,24 +3,17 @@
 [![Java](https://img.shields.io/badge/Java-17-orange)](https://adoptium.net/)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.0-purple)](https://kotlinlang.org/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-brightgreen)](https://spring.io/projects/spring-boot)
-[![Compose BOM](https://img.shields.io/badge/Compose%20BOM-2024.09-blue)](https://developer.android.com/jetpack/compose)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![CI Pipeline](https://github.com/haneex22/3course-project/actions/workflows/ci.yml/badge.svg)](https://github.com/haneex22/3course-project/actions)
 
 Мобильное приложение для автоматизации процессов аренды автомобилей.
 Траектория В (Мобильная разработка), СКФУ, 2026.
-
-**Git-статистика:**
-- 👨‍💻 Разработчик: Джабраилов (1 контрибьютор)
-- 📅 Период разработки: 2026 г.
-- 📝 Всего коммитов: 9
-- 📊 Размер кода: ~9 000 LOC
-- 🔄 Регулярные коммиты на протяжении всего проекта
 
 ## Стек технологий
 | Компонент | Технология |
 |-----------|------------|
 | Backend | Java 17 + Spring Boot 3.2 + Spring Security |
-| Database | PostgreSQL 15 + Flyway |
+| Database | PostgreSQL 16 + Flyway |
 | ORM | Spring Data JPA / Hibernate |
 | API | REST + OpenAPI/Swagger |
 | Auth | JWT + BCrypt |
@@ -57,15 +50,18 @@
 │       ├── exception/   # GlobalExceptionHandler
 │       └── scheduler/   # Планировщик отмены броней
 │
+├── 📂 .github/workflows/  # GitHub Actions CI/CD
 ├── 📚 docs/             # Документация проекта
-│   ├── 01-business-model/   # IDEF0, BUC, Глоссарий, SWOT
-│   ├── 02-requirements/     # Use Case, Domain Model
+│   ├── 01-business-model/   # IDEF0, BUC, Глоссарий, SWOT, ROI
+│   ├── 02-requirements/     # Use Case, Domain Model, Спецификации
 │   ├── 03-architecture/     # PCMEF, Интерфейсы, ADR
 │   ├── 04-database/         # ER, DDL
-│   └── 05-design/           # Sequence-диаграммы
-│
-├── 📄 ПИЖ_Пояснительная_записка.docx  # Пояснительная записка
+│   ├── 05-design/           # Sequence-диаграммы
+│   └── images/              # Рендереные диаграммы
+├── 📄 ПИЖ_Пояснительная_записка.docx
+├── 📄 docs/presentation.md  # Презентация к защите
 ├── 🐳 docker-compose.yml
+├── 📄 LICENSE
 └── 📖 README.md
 ```
 
@@ -96,21 +92,23 @@ docker-compose up -d
 
 - 👨‍💻 Разработчик: Джабраилов (1 контрибьютор)
 - 📅 Период: 2026 г.
-- 📝 Коммитов: 9
+- 📝 Коммитов: 12
 
 > **📸 Скриншоты GitHub (добавьте после пуша):**
 > 1. Зайдите в репозиторий → **Insights** → **Contributors**
-> 2. Скриншот Commit Activity → `docs/images/git-commit-activity.png`
+> 2. Скриншот Commit Activity → сохраните как `docs/images/git-commit-activity.png`
 > 3. Ниже — Punch Card → `docs/images/git-punch-card.png`
 > 4. На главной — Languages → `docs/images/git-languages.png`
 >
-> *Пример:*
+> *После добавления изображений:*
 > ![Commit Activity](docs/images/git-commit-activity.png)
 > ![Punch Card](docs/images/git-punch-card.png)
 
 ---
 
 ## Архитектура (PCMEF) 🏗️
+
+![PCMEF Architecture](docs/images/diagram_PCMEF_Architecture_1.png)
 
 Проект использует архитектурный паттерн PCMEF:
 - **Presentation** — экраны Android (Jetpack Compose)
@@ -157,6 +155,27 @@ docker-compose up -d
 | POST | `/api/v1/admin/bookings/{id}/return` | MANAGER | Принять возврат (UC-008) |
 | GET | `/api/v1/admin/clients/unverified` | MANAGER/ADMIN | Неверифиц. клиенты |
 | PUT | `/api/v1/admin/clients/{userId}/verify` | ADMIN | Верифицировать клиента |
+
+## Документация 📚
+
+| Раздел | Файл | Описание |
+|--------|------|----------|
+| Бизнес-модель | [buc-diagram.md](docs/01-business-model/buc-diagram.md) | BUC-диаграмма |
+| | [context-diagram.md](docs/01-business-model/context-diagram.md) | IDEF0 контекстная диаграмма |
+| | [glossary.md](docs/01-business-model/glossary.md) | Глоссарий (16 терминов) |
+| | [swot.md](docs/01-business-model/swot.md) | SWOT-анализ |
+| | [roi.md](docs/01-business-model/roi.md) | Экономическая эффективность |
+| Требования | [use-case-diagram.md](docs/02-requirements/use-case-diagram.md) | Use Case диаграмма |
+| | [domain-model.md](docs/02-requirements/domain-model.md) | Доменная модель |
+| | [use-case-specifications.md](docs/02-requirements/use-case-specifications.md) | Спецификации UC |
+| Архитектура | [pcmef-diagram.md](docs/03-architecture/pcmef-diagram.md) | PCMEF архитектура |
+| | [interfaces.md](docs/03-architecture/interfaces.md) | Интерфейсы слоёв |
+| | [adr.md](docs/03-architecture/adr.md) | Architectural Decision Records |
+| БД | [er-diagram.md](docs/04-database/er-diagram.md) | ER-диаграмма |
+| | [ddl.sql](docs/04-database/ddl.sql) | DDL-скрипт PostgreSQL |
+| Проектирование | [sequence-diagrams.md](docs/05-design/sequence-diagrams.md) | Sequence-диаграммы (5 UC) |
+| | [executive-summary.md](docs/05-design/executive-summary.md) | Executive Summary |
+| Защита | [presentation.md](docs/presentation.md) | План презентации |
 
 ## Реализованные паттерны GoF
 - **State** — жизненный цикл бронирования (Pending → Confirmed → Active → Cancelled)
