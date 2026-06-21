@@ -314,7 +314,7 @@ backend/target/site/jacoco/index.html
 
 **Рисунок 6.1 — Отчёт JaCoCo**
 
-Отчёт JaCoCo](images/Jacoco_report.png)
+[Отчёт JaCoCo](images/Jacoco_report.png)
 
 ```
 Целевой показатель >40% покрытия достигнут.
