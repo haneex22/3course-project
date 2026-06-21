@@ -4,7 +4,7 @@
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.0-purple)](https://kotlinlang.org/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-brightgreen)](https://spring.io/projects/spring-boot)
 [![Compose BOM](https://img.shields.io/badge/Compose%20BOM-2024.09-blue)](https://developer.android.com/jetpack/compose)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 Мобильное приложение для автоматизации процессов аренды автомобилей.
 Траектория В (Мобильная разработка), СКФУ, 2026.
@@ -201,4 +201,4 @@ docker-compose up -d
 6. Тестирование (JUnit, Mockito)
 
 ## Лицензия
-Учебный проект, СКФУ, 2026.
+Проект распространяется под лицензией [MIT](LICENSE). Учебный проект, СКФУ, 2026.
