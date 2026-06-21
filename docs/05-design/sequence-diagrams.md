@@ -2,6 +2,10 @@
 
 ## UC-002: Найти автомобиль по фильтрам
 
+![UC-002 Sequence](../images/diagram_UC002_SearchCar_1.png)
+
+*Исходный код диаграммы:*
+
 ```plantuml
 @startuml UC002_SearchCar
 actor "Клиент" as Client
@@ -43,6 +47,10 @@ UI -> Client: Отображает список автомобилей
 ---
 
 ## UC-003: Забронировать автомобиль
+
+![UC-003 Sequence](../images/diagram_UC003_BookCar_1.png)
+
+*Исходный код диаграммы:*
 
 ```plantuml
 @startuml UC003_BookCar
@@ -93,6 +101,10 @@ UI -> Client: "Бронирование подтверждено!"
 
 ## UC-007: Осмотреть и выдать автомобиль
 
+![UC-007 Sequence](../images/diagram_UC007_HandoverCar_1.png)
+
+*Исходный код диаграммы:*
+
 ```plantuml
 @startuml UC007_HandoverCar
 actor "Менеджер" as Manager
@@ -137,6 +149,10 @@ UI -> Manager: Показывает подтверждение
 ---
 
 ## UC-008: Принять возврат автомобиля
+
+![UC-008 Sequence](../images/diagram_UC008_ReturnCar_1.png)
+
+*Исходный код диаграммы:*
 
 ```plantuml
 @startuml UC008_ReturnCar
@@ -185,6 +201,10 @@ UI -> Manager: Показывает подтверждение возврата
 ---
 
 ## UC-004: Оплатить аренду и залог
+
+![UC-004 Sequence](../images/diagram_UC004_Payment_1.png)
+
+*Исходный код диаграммы:*
 
 ```plantuml
 @startuml UC004_Payment

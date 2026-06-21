@@ -1,5 +1,9 @@
 # BUC-диаграмма (Business Use Case)
 
+![BUC-диаграмма](../images/diagram_BUC_CarRental_1.png)
+
+*Исходный код диаграммы:*
+
 ```plantuml
 @startuml BUC_CarRental
 left to right direction

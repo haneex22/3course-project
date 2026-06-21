@@ -1,5 +1,9 @@
 # ER-диаграмма
 
+![ER-диаграмма](../images/diagram_ER_Diagram_1.png)
+
+*Исходный код диаграммы:*
+
 ```plantuml
 @startuml ER_Diagram
 !define TABLE(name,desc) class name as "desc" << (T,#FFAAAA) >>

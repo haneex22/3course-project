@@ -1,5 +1,9 @@
 # Архитектурная диаграмма PCMEF
 
+![PCMEF Architecture](../images/diagram_PCMEF_Architecture_1.png)
+
+*Исходный код диаграммы:*
+
 ```plantuml
 @startuml PCMEF_Architecture
 skinparam packageStyle rectangle

@@ -1,5 +1,9 @@
 # Диаграмма вариантов использования
 
+![Use Case диаграмма](../images/diagram_UC_CarRental_1.png)
+
+*Исходный код диаграммы:*
+
 ```plantuml
 @startuml UC_CarRental
 left to right direction

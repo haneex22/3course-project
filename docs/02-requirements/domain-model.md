@@ -1,5 +1,9 @@
 # Доменная модель
 
+![Доменная модель](../images/diagram_DomainModel_1.png)
+
+*Исходный код диаграммы:*
+
 ```plantuml
 @startuml DomainModel
 skinparam classAttributeIconSize 0
