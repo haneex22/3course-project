@@ -71,7 +71,6 @@ class ReservationServiceTest {
     @Test
     void bookCar_success_createsReservation() {
         when(clientProfileRepository.findById(clientId)).thenReturn(Optional.of(verifiedProfile));
-        when(reservationRepository.findByClientIdAndStatusIn(any(), any())).thenReturn(List.of());
         when(reservationRepository.existsConflictingReservation(any(), any(), any())).thenReturn(false);
         when(carRepository.findById(car.getId())).thenReturn(Optional.of(car));
         when(reservationRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
@@ -95,25 +94,24 @@ class ReservationServiceTest {
     }
 
     @Test
-    void bookCar_carNotAvailable_throwsCarNotAvailableException() {
-        car.setStatus(CarStatus.RENTED);
+    void bookCar_maintenanceCar_throwsCarNotAvailableException() {
+        car.setStatus(CarStatus.MAINTENANCE);
         when(clientProfileRepository.findById(clientId)).thenReturn(Optional.of(verifiedProfile));
-        when(reservationRepository.findByClientIdAndStatusIn(any(), any())).thenReturn(List.of());
         when(reservationRepository.existsConflictingReservation(any(), any(), any())).thenReturn(false);
         when(carRepository.findById(car.getId())).thenReturn(Optional.of(car));
 
         assertThatThrownBy(() -> reservationService.bookCar(clientId, request))
-                .isInstanceOf(CarNotAvailableException.class);
+                .isInstanceOf(CarNotAvailableException.class)
+                .hasMessageContaining("техническом обслуживании");
     }
 
     @Test
     void bookCar_dateConflict_throwsCarNotAvailableException() {
         when(clientProfileRepository.findById(clientId)).thenReturn(Optional.of(verifiedProfile));
-        when(reservationRepository.findByClientIdAndStatusIn(any(), any())).thenReturn(List.of());
         when(reservationRepository.existsConflictingReservation(any(), any(), any())).thenReturn(true);
 
         assertThatThrownBy(() -> reservationService.bookCar(clientId, request))
                 .isInstanceOf(CarNotAvailableException.class)
-                .hasMessageContaining("not available for the selected dates");
+                .hasMessageContaining("уже забронирован");
     }
 }

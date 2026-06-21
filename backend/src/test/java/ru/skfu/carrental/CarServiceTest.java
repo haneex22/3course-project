@@ -9,7 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ru.skfu.carrental.dto.response.CarResponse;
 import ru.skfu.carrental.entity.Car;
 import ru.skfu.carrental.entity.enums.CarStatus;
-import ru.skfu.carrental.exception.CarNotAvailableException;
+import ru.skfu.carrental.exception.CarNotFoundException;
 import ru.skfu.carrental.foundation.CarRepository;
 import ru.skfu.carrental.foundation.ReservationRepository;
 import ru.skfu.carrental.mediator.CarServiceImpl;
@@ -105,6 +105,6 @@ class CarServiceTest {
         when(carRepository.findById(unknownId)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> carService.getCarById(unknownId))
-                .isInstanceOf(CarNotAvailableException.class);
+                .isInstanceOf(CarNotFoundException.class);
     }
 }

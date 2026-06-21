@@ -17,6 +17,12 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse(ex.getMessage(), HttpStatus.CONFLICT.value()));
     }
 
+    @ExceptionHandler(CarNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleCarNotFound(CarNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value()));
+    }
+
     @ExceptionHandler(UserNotVerifiedException.class)
     public ResponseEntity<ErrorResponse> handleUserNotVerified(UserNotVerifiedException ex) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN)

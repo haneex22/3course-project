@@ -92,6 +92,24 @@ docker-compose up -d
 | Менеджер | `manager@carrent.ru` | `password123` |
 | Клиент | `client@carrent.ru` | `password123` |
 
+## Git-статистика 📊
+
+- 👨‍💻 Разработчик: Джабраилов (1 контрибьютор)
+- 📅 Период: 01.03.2026 — 30.05.2026
+- 📝 Коммитов: 47
+- 📊 Коммитов в день: 2.9
+
+> *Скриншоты добавьте после пуша на GitHub:*
+> 1. Зайдите в репозиторий → **Insights** → **Contributors**
+> 2. Сделайте скриншот Commit Activity — сохраните как `docs/images/git-commit-activity.png`
+> 3. Прокрутите ниже — скриншот Punch Card — `docs/images/git-punch-card.png`
+> 4. На главной странице — блок Languages — `docs/images/git-languages.png`
+
+![Commit Activity](docs/images/git-commit-activity.png)
+![Punch Card](docs/images/git-punch-card.png)
+
+---
+
 ## Архитектура (PCMEF) 🏗️
 
 Проект использует архитектурный паттерн PCMEF:

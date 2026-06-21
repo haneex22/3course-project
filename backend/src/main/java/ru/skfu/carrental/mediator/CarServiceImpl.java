@@ -7,7 +7,7 @@ import ru.skfu.carrental.dto.request.CarStatusUpdateRequest;
 import ru.skfu.carrental.dto.response.CarResponse;
 import ru.skfu.carrental.entity.Car;
 import ru.skfu.carrental.entity.enums.CarStatus;
-import ru.skfu.carrental.exception.CarNotAvailableException;
+import ru.skfu.carrental.exception.CarNotFoundException;
 import ru.skfu.carrental.foundation.CarRepository;
 import ru.skfu.carrental.foundation.ReservationRepository;
 
@@ -54,7 +54,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public Car getCarEntityById(UUID id) {
         return carRepository.findById(id)
-                .orElseThrow(() -> new CarNotAvailableException("Car not found: " + id));
+                .orElseThrow(() -> new CarNotFoundException("Car not found: " + id));
     }
 
     @Override

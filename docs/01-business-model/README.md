@@ -4,3 +4,4 @@
 - [BUC-диаграмма](buc-diagram.md)
 - [Бизнес-глоссарий](glossary.md)
 - [SWOT-анализ](swot.md)
+- [Экономическая эффективность (ROI)](roi.md)

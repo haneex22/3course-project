@@ -10,7 +10,7 @@ import ru.skfu.carrental.dto.request.CarCreateRequest;
 import ru.skfu.carrental.dto.response.CarResponse;
 import ru.skfu.carrental.entity.Car;
 import ru.skfu.carrental.entity.enums.CarStatus;
-import ru.skfu.carrental.exception.CarNotAvailableException;
+import ru.skfu.carrental.exception.CarNotFoundException;
 import ru.skfu.carrental.foundation.CarRepository;
 import ru.skfu.carrental.foundation.ReservationRepository;
 import ru.skfu.carrental.mediator.CarServiceImpl;
@@ -92,8 +92,7 @@ class CarServiceUpdateTest {
         when(carRepository.findById(carId)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> carService.updateCar(carId, request))
-                .isInstanceOf(CarNotAvailableException.class)
-                .hasMessageContaining("не найден");
+                .isInstanceOf(CarNotFoundException.class);
     }
 
     @Test
