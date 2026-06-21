@@ -21,6 +21,11 @@ public class PendingState implements ReservationState {
     }
 
     @Override
+    public void completeRental(Reservation reservation) {
+        throw new IllegalStateException("Cannot complete rental: reservation is not active");
+    }
+
+    @Override
     public String getStatusName() {
         return "PENDING";
     }

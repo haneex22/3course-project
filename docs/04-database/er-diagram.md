@@ -65,6 +65,8 @@ TABLE(rental_agreements, "rental_agreements") {
   signed_at TIMESTAMP NOT NULL
   initial_mileage BIGINT
   initial_fuel_level INTEGER
+  final_mileage BIGINT
+  final_fuel_level INTEGER
   is_active BOOLEAN
   created_at TIMESTAMP NOT NULL
   updated_at TIMESTAMP NOT NULL

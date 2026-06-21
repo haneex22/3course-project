@@ -29,6 +29,12 @@ public class RentalAgreement {
     @Column(name = "initial_fuel_level")
     private int initialFuelLevel = 100;
 
+    @Column(name = "final_mileage")
+    private Long finalMileage;
+
+    @Column(name = "final_fuel_level")
+    private Integer finalFuelLevel;
+
     @Column(name = "is_active")
     private boolean active = true;
 
@@ -50,8 +56,13 @@ public class RentalAgreement {
     public void setInitialMileage(long initialMileage) { this.initialMileage = initialMileage; }
     public int getInitialFuelLevel() { return initialFuelLevel; }
     public void setInitialFuelLevel(int initialFuelLevel) { this.initialFuelLevel = initialFuelLevel; }
+    public Long getFinalMileage() { return finalMileage; }
+    public void setFinalMileage(Long finalMileage) { this.finalMileage = finalMileage; }
+    public Integer getFinalFuelLevel() { return finalFuelLevel; }
+    public void setFinalFuelLevel(Integer finalFuelLevel) { this.finalFuelLevel = finalFuelLevel; }
     public boolean isActive() { return active; }
     public void setActive(boolean active) { this.active = active; }
     public LocalDateTime getCreatedAt() { return createdAt; }
     public LocalDateTime getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 }

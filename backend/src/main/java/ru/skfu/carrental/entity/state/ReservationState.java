@@ -6,5 +6,6 @@ public interface ReservationState {
     void confirmPayment(Reservation reservation);
     void handoverCar(Reservation reservation);
     void cancel(Reservation reservation);
+    void completeRental(Reservation reservation);
     String getStatusName();
 }

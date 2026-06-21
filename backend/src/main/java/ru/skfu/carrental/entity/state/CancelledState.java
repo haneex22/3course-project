@@ -20,6 +20,11 @@ public class CancelledState implements ReservationState {
     }
 
     @Override
+    public void completeRental(Reservation reservation) {
+        throw new IllegalStateException("Cannot complete rental on a cancelled reservation");
+    }
+
+    @Override
     public String getStatusName() {
         return "CANCELLED";
     }

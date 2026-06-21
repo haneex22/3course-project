@@ -91,6 +91,99 @@ UI -> Client: "Бронирование подтверждено!"
 
 ---
 
+## UC-007: Осмотреть и выдать автомобиль
+
+```plantuml
+@startuml UC007_HandoverCar
+actor "Менеджер" as Manager
+participant "AdminScreen" as UI
+participant "AdminViewModel" as VM
+participant "CarApiService" as API
+participant "AdminController" as Ctrl
+participant "ReservationServiceImpl" as ResSvc
+participant "RentalAgreementRepository" as AgrRepo
+participant "CarRepository" as CarRepo
+database "PostgreSQL" as DB
+
+Manager -> UI: Выбирает бронь со статусом CONFIRMED
+Manager -> UI: Заполняет пробег и уровень топлива
+Manager -> UI: Нажимает "Выдать"
+UI -> VM: handoverCar(bookingId, mileage, fuelLevel)
+VM -> API: POST /api/v1/admin/bookings/{id}/handover
+API -> Ctrl: handoverCar(id, request, manager)
+
+Ctrl -> ResSvc: handoverCar(id, mileage, fuel, managerId)
+
+ResSvc -> DB: findById(reservationId)
+note right: Проверка статуса CONFIRMED
+
+ResSvc -> ResSvc: getState().handoverCar(reservation)
+note right: ConfirmedState → ACTIVE
+
+ResSvc -> CarRepo: car.setStatus(RENTED), setMileage/Fuel
+CarRepo -> DB: UPDATE cars
+
+ResSvc -> AgrRepo: save(RentalAgreement{active=true})
+AgrRepo -> DB: INSERT INTO rental_agreements
+
+ResSvc --> Ctrl: RentalAgreement
+Ctrl --> API: HTTP 200 + RentalAgreementResponse
+API --> VM: Response<RentalAgreementDto>
+VM -> UI: update state: successMessage = "Автомобиль выдан"
+UI -> Manager: Показывает подтверждение
+@enduml
+```
+
+---
+
+## UC-008: Принять возврат автомобиля
+
+```plantuml
+@startuml UC008_ReturnCar
+actor "Менеджер" as Manager
+participant "AdminScreen" as UI
+participant "AdminViewModel" as VM
+participant "CarApiService" as API
+participant "AdminController" as Ctrl
+participant "ReservationServiceImpl" as ResSvc
+participant "RentalAgreementRepository" as AgrRepo
+participant "CarRepository" as CarRepo
+database "PostgreSQL" as DB
+
+Manager -> UI: Выбирает активную аренду (ACTIVE)
+Manager -> UI: Осматривает авто, фиксирует пробег/топливо
+Manager -> UI: Нажимает "Принять"
+UI -> VM: returnCar(bookingId, mileage, fuelLevel)
+VM -> API: POST /api/v1/admin/bookings/{id}/return
+API -> Ctrl: returnCar(id, request, manager)
+
+Ctrl -> ResSvc: returnCar(id, mileage, fuel, managerId)
+
+ResSvc -> DB: findById(reservationId)
+note right: Проверка статуса ACTIVE
+
+ResSvc -> AgrRepo: findByReservationId(reservationId)
+AgrRepo --> ResSvc: RentalAgreement
+
+ResSvc -> AgrRepo: setFinalMileage/FinalFuel, setActive(false)
+AgrRepo -> DB: UPDATE rental_agreements
+
+ResSvc -> ResSvc: getState().completeRental(reservation)
+note right: ActiveState → COMPLETED
+
+ResSvc -> CarRepo: car.setStatus(AVAILABLE), setMileage/Fuel
+CarRepo -> DB: UPDATE cars
+
+ResSvc --> Ctrl: RentalAgreement (обновлённый)
+Ctrl --> API: HTTP 200 + RentalAgreementResponse
+API --> VM: Response<RentalAgreementDto>
+VM -> UI: update state: successMessage = "Автомобиль принят"
+UI -> Manager: Показывает подтверждение возврата
+@enduml
+```
+
+---
+
 ## UC-004: Оплатить аренду и залог
 
 ```plantuml

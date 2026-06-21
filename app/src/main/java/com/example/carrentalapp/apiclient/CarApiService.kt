@@ -5,6 +5,9 @@ import com.example.carrentalapp.model.AdminCarRequest
 import com.example.carrentalapp.model.BusyPeriod
 import com.example.carrentalapp.model.CarDto
 import com.example.carrentalapp.model.CarStatusUpdateRequest
+import com.example.carrentalapp.model.HandoverRequest
+import com.example.carrentalapp.model.RentalAgreementDto
+import com.example.carrentalapp.model.ReturnRequest
 import com.example.carrentalapp.model.UnverifiedClient
 import retrofit2.Response
 import retrofit2.http.*
@@ -58,4 +61,16 @@ interface CarApiService {
 
     @POST("api/v1/admin/bookings/{id}/cancel")
     suspend fun cancelBookingAdmin(@Path("id") id: String): Response<Void>
+
+    @POST("api/v1/admin/bookings/{id}/handover")
+    suspend fun handoverCar(
+        @Path("id") id: String,
+        @Body request: HandoverRequest
+    ): Response<RentalAgreementDto>
+
+    @POST("api/v1/admin/bookings/{id}/return")
+    suspend fun returnCar(
+        @Path("id") id: String,
+        @Body request: ReturnRequest
+    ): Response<RentalAgreementDto>
 }

@@ -1,15 +1,79 @@
+# Maven
+target/
+**/target/
+*.jar
+*.war
+*.ear
+
+# Gradle
+.gradle/
+**/build/
+!src/**/build/
+
+# IDE - IntelliJ IDEA
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+*.iws
+*.ipr
+out/
+
+# IDE - VS Code
+.vscode/
+*.code-workspace
+
+# IDE - Eclipse
+.classpath
+.project
+.settings/
+*.class
+
+# Android
 local.properties
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.cxx/
+*.apk
+*.aab
+*.ap_
+captures/
+.externalNativeBuild/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Windows reserved device names (can cause git errors)
+nul
+CON
+PRN
+AUX
+
+# Environment & secrets
+.env
+.env.local
+*.env
+
+# Logs
+*.log
+log/
+logs/
+
+# Docker
+docker-data/
+
+# Documentation
+*.pdf
+!docs/**/*.pdf
+
+# Python virtual env (for scripts)
+venv/
+.venv/
+__pycache__/
+*.pyc

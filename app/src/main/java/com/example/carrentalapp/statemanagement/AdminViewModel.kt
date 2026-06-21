@@ -7,6 +7,8 @@ import com.example.carrentalapp.model.AdminBookingDto
 import com.example.carrentalapp.model.AdminCarRequest
 import com.example.carrentalapp.model.CarDto
 import com.example.carrentalapp.model.CarStatusUpdateRequest
+import com.example.carrentalapp.model.HandoverRequest
+import com.example.carrentalapp.model.ReturnRequest
 import com.example.carrentalapp.model.UnverifiedClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -202,6 +204,50 @@ class AdminViewModel : ViewModel() {
                 }
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(isLoading = false, error = e.message ?: "Ошибка сети")
+            }
+        }
+    }
+
+    fun handoverCar(bookingId: String, mileage: Long, fuelLevel: Int) {
+        viewModelScope.launch {
+            try {
+                val response = ApiClient.carApi.handoverCar(bookingId, HandoverRequest(mileage, fuelLevel))
+                if (response.isSuccessful) {
+                    _uiState.value = _uiState.value.copy(successMessage = "Автомобиль выдан")
+                    loadAllBookings()
+                } else {
+                    val msg = when (response.code()) {
+                        400 -> "Проверьте данные (пробег и уровень топлива)"
+                        403 -> "Недостаточно прав для выдачи"
+                        409 -> "Бронирование не может быть выдано"
+                        else -> "Ошибка выдачи (${response.code()})"
+                    }
+                    _uiState.value = _uiState.value.copy(error = msg)
+                }
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(error = e.message ?: "Ошибка сети")
+            }
+        }
+    }
+
+    fun returnCar(bookingId: String, mileage: Long, fuelLevel: Int) {
+        viewModelScope.launch {
+            try {
+                val response = ApiClient.carApi.returnCar(bookingId, ReturnRequest(mileage, fuelLevel))
+                if (response.isSuccessful) {
+                    _uiState.value = _uiState.value.copy(successMessage = "Автомобиль принят")
+                    loadAllBookings()
+                } else {
+                    val msg = when (response.code()) {
+                        400 -> "Проверьте данные (пробег и уровень топлива)"
+                        403 -> "Недостаточно прав для закрытия аренды"
+                        409 -> "Аренда не может быть завершена"
+                        else -> "Ошибка закрытия аренды (${response.code()})"
+                    }
+                    _uiState.value = _uiState.value.copy(error = msg)
+                }
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(error = e.message ?: "Ошибка сети")
             }
         }
     }

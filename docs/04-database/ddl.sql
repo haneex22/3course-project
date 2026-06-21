@@ -65,6 +65,9 @@ CREATE TABLE rental_agreements (
     signed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     initial_mileage BIGINT DEFAULT 0,
     initial_fuel_level INTEGER DEFAULT 100,
+    -- V3: добавлены поля для фиксации данных при возврате
+    final_mileage BIGINT,
+    final_fuel_level INTEGER,
     is_active BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

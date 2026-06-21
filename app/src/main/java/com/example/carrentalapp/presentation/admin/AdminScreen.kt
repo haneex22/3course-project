@@ -40,6 +40,8 @@ import com.example.carrentalapp.model.UnverifiedClient
 import com.example.carrentalapp.presentation.common.CarLabels
 import com.example.carrentalapp.statemanagement.AdminUiState
 import com.example.carrentalapp.statemanagement.AdminViewModel
+import androidx.compose.material.icons.filled.Handyman
+import androidx.compose.material.icons.filled.CallMade
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -237,7 +239,9 @@ private fun BookingsTab(uiState: AdminUiState, viewModel: AdminViewModel) {
                 items(uiState.bookings) { booking ->
                     AdminBookingCard(
                         booking = booking,
-                        onCancel = { viewModel.cancelBooking(booking.id) }
+                        onCancel = { viewModel.cancelBooking(booking.id) },
+                        onHandover = { mileage, fuel -> viewModel.handoverCar(booking.id, mileage, fuel) },
+                        onReturn = { mileage, fuel -> viewModel.returnCar(booking.id, mileage, fuel) }
                     )
                 }
             }
@@ -292,8 +296,15 @@ private fun ClientsTab(uiState: AdminUiState, viewModel: AdminViewModel) {
 }
 
 @Composable
-private fun AdminBookingCard(booking: AdminBookingDto, onCancel: () -> Unit) {
+private fun AdminBookingCard(
+    booking: AdminBookingDto,
+    onCancel: () -> Unit,
+    onHandover: ((Long, Int) -> Unit)? = null,
+    onReturn: ((Long, Int) -> Unit)? = null
+) {
     var showCancelDialog by remember { mutableStateOf(false) }
+    var showHandoverDialog by remember { mutableStateOf(false) }
+    var showReturnDialog by remember { mutableStateOf(false) }
 
     val statusColor = when (booking.status) {
         "PENDING" -> MaterialTheme.colorScheme.tertiary
@@ -324,6 +335,22 @@ private fun AdminBookingCard(booking: AdminBookingDto, onCancel: () -> Unit) {
                 }
             },
             dismissButton = { TextButton(onClick = { showCancelDialog = false }) { Text("Назад") } }
+        )
+    }
+
+    if (showHandoverDialog) {
+        HandoverDialog(
+            booking = booking,
+            onDismiss = { showHandoverDialog = false },
+            onConfirm = { mileage, fuel -> showHandoverDialog = false; onHandover?.invoke(mileage, fuel) }
+        )
+    }
+
+    if (showReturnDialog) {
+        ReturnDialog(
+            booking = booking,
+            onDismiss = { showReturnDialog = false },
+            onConfirm = { mileage, fuel -> showReturnDialog = false; onReturn?.invoke(mileage, fuel) }
         )
     }
 
@@ -359,13 +386,37 @@ private fun AdminBookingCard(booking: AdminBookingDto, onCancel: () -> Unit) {
                 }
             }
 
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween,
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically) {
                 Text("${booking.amount.toInt()} ${booking.currency}/день",
                     style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
-                    color = MaterialTheme.colorScheme.primary)
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.weight(1f))
 
-                if (booking.status !in listOf("CANCELLED", "COMPLETED")) {
+                if (booking.status == "CONFIRMED" && onHandover != null) {
+                    FilledTonalButton(
+                        onClick = { showHandoverDialog = true },
+                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)
+                    ) {
+                        Icon(Icons.Default.Handyman, contentDescription = null, modifier = Modifier.size(16.dp))
+                        Spacer(Modifier.width(4.dp))
+                        Text("Выдать", style = MaterialTheme.typography.labelMedium)
+                    }
+                }
+
+                if (booking.status == "ACTIVE" && onReturn != null) {
+                    FilledTonalButton(
+                        onClick = { showReturnDialog = true },
+                        colors = ButtonDefaults.filledTonalButtonColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)
+                    ) {
+                        Icon(Icons.Default.CallMade, contentDescription = null, modifier = Modifier.size(16.dp))
+                        Spacer(Modifier.width(4.dp))
+                        Text("Принять", style = MaterialTheme.typography.labelMedium)
+                    }
+                }
+
+                if (booking.status == "PENDING") {
                     FilledTonalButton(
                         onClick = { showCancelDialog = true },
                         colors = ButtonDefaults.filledTonalButtonColors(containerColor = MaterialTheme.colorScheme.errorContainer),
@@ -545,17 +596,13 @@ private fun AdminCarCard(car: CarDto, onStatusChange: (String) -> Unit, onDelete
                     }
                 }
 
-                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     OutlinedButton(onClick = { showEditDialog = true }, modifier = Modifier.weight(1f)) {
-                        Icon(Icons.Default.Edit, contentDescription = null, modifier = Modifier.size(18.dp))
-                        Spacer(Modifier.width(4.dp))
-                        Text("Ред.", maxLines = 1)
+                        Icon(Icons.Default.Edit, contentDescription = "Редактировать", modifier = Modifier.size(20.dp))
                     }
                     Box(modifier = Modifier.weight(1f)) {
                         OutlinedButton(onClick = { expanded = true }, modifier = Modifier.fillMaxWidth()) {
-                            Icon(Icons.Default.DirectionsCar, contentDescription = null, modifier = Modifier.size(18.dp))
-                            Spacer(Modifier.width(4.dp))
-                            Text("Статус", maxLines = 1)
+                            Icon(Icons.Default.DirectionsCar, contentDescription = "Статус", modifier = Modifier.size(20.dp))
                         }
                         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
                             CarLabels.carStatuses.forEach { status ->
@@ -571,9 +618,7 @@ private fun AdminCarCard(car: CarDto, onStatusChange: (String) -> Unit, onDelete
                         colors = ButtonDefaults.filledTonalButtonColors(containerColor = MaterialTheme.colorScheme.errorContainer),
                         modifier = Modifier.weight(1f)
                     ) {
-                        Icon(Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(18.dp))
-                        Spacer(Modifier.width(4.dp))
-                        Text("Уд.", maxLines = 1)
+                        Icon(Icons.Default.Delete, contentDescription = "Удалить", modifier = Modifier.size(20.dp))
                     }
                 }
             }
@@ -634,6 +679,102 @@ private fun EditCarDialog(car: CarDto, onDismiss: () -> Unit, onConfirm: (AdminC
                 if (modelName.isBlank() || licensePlate.isBlank() || vin.isBlank()) return@Button
                 onConfirm(AdminCarRequest(vin.trim(), licensePlate.trim(), modelName.trim(), carClass, rate, imageUrl.takeIf { it.isNotBlank() }?.trim()))
             }) { Text("Сохранить") }
+        },
+        dismissButton = { TextButton(onClick = onDismiss) { Text("Отмена") } }
+    )
+}
+
+@Composable
+private fun HandoverDialog(
+    booking: AdminBookingDto,
+    onDismiss: () -> Unit,
+    onConfirm: (Long, Int) -> Unit
+) {
+    var mileage by remember { mutableStateOf("") }
+    var fuelLevel by remember { mutableStateOf("100") }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Выдать автомобиль", fontWeight = FontWeight.Bold) },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text("Бронирование: ${booking.carModelName}")
+                Text("Клиент: ${booking.clientEmail}", style = MaterialTheme.typography.bodySmall)
+                OutlinedTextField(
+                    value = mileage,
+                    onValueChange = { mileage = it.filter { c -> c.isDigit() } },
+                    label = { Text("Пробег, км") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+                OutlinedTextField(
+                    value = fuelLevel,
+                    onValueChange = { f ->
+                        val filtered = f.filter { c -> c.isDigit() }
+                        if (filtered.toIntOrNull()?.let { it in 0..100 } != false) {
+                            fuelLevel = filtered
+                        }
+                    },
+                    label = { Text("Уровень топлива, %") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+            }
+        },
+        confirmButton = {
+            Button(onClick = {
+                val m = mileage.toLongOrNull() ?: return@Button
+                val f = fuelLevel.toIntOrNull() ?: return@Button
+                onConfirm(m, f)
+            }) { Text("Выдать") }
+        },
+        dismissButton = { TextButton(onClick = onDismiss) { Text("Отмена") } }
+    )
+}
+
+@Composable
+private fun ReturnDialog(
+    booking: AdminBookingDto,
+    onDismiss: () -> Unit,
+    onConfirm: (Long, Int) -> Unit
+) {
+    var mileage by remember { mutableStateOf("") }
+    var fuelLevel by remember { mutableStateOf("") }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Принять возврат", fontWeight = FontWeight.Bold) },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text("Автомобиль: ${booking.carModelName}")
+                Text("Клиент: ${booking.clientEmail}", style = MaterialTheme.typography.bodySmall)
+                OutlinedTextField(
+                    value = mileage,
+                    onValueChange = { mileage = it.filter { c -> c.isDigit() } },
+                    label = { Text("Итоговый пробег, км") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+                OutlinedTextField(
+                    value = fuelLevel,
+                    onValueChange = { f ->
+                        val filtered = f.filter { c -> c.isDigit() }
+                        if (filtered.toIntOrNull()?.let { it in 0..100 } != false) {
+                            fuelLevel = filtered
+                        }
+                    },
+                    label = { Text("Уровень топлива, %") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+            }
+        },
+        confirmButton = {
+            Button(onClick = {
+                val m = mileage.toLongOrNull() ?: return@Button
+                val f = fuelLevel.toIntOrNull() ?: return@Button
+                onConfirm(m, f)
+            }) { Text("Принять") }
         },
         dismissButton = { TextButton(onClick = onDismiss) { Text("Отмена") } }
     )

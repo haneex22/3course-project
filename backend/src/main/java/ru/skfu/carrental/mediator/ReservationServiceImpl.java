@@ -16,7 +16,10 @@ import ru.skfu.carrental.exception.UserNotVerifiedException;
 import ru.skfu.carrental.foundation.CarRepository;
 import ru.skfu.carrental.foundation.ClientProfileRepository;
 import ru.skfu.carrental.foundation.ReservationRepository;
+import ru.skfu.carrental.foundation.RentalAgreementRepository;
 import ru.skfu.carrental.foundation.UserRepository;
+import ru.skfu.carrental.entity.RentalAgreement;
+import ru.skfu.carrental.dto.response.RentalAgreementResponse;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -33,15 +36,18 @@ public class ReservationServiceImpl implements ReservationService {
     private final ClientProfileRepository clientProfileRepository;
 
     private final UserRepository userRepository;
+    private final RentalAgreementRepository rentalAgreementRepository;
 
     public ReservationServiceImpl(ReservationRepository reservationRepository,
                                    CarRepository carRepository,
                                    ClientProfileRepository clientProfileRepository,
-                                   UserRepository userRepository) {
+                                   UserRepository userRepository,
+                                   RentalAgreementRepository rentalAgreementRepository) {
         this.reservationRepository = reservationRepository;
         this.carRepository = carRepository;
         this.clientProfileRepository = clientProfileRepository;
         this.userRepository = userRepository;
+        this.rentalAgreementRepository = rentalAgreementRepository;
     }
 
     @Override
@@ -147,6 +153,75 @@ public class ReservationServiceImpl implements ReservationService {
             carRepository.save(reservation.getCar());
         }
         reservationRepository.save(reservation);
+    }
+
+    @Override
+    public RentalAgreement handoverCar(UUID reservationId, long initialMileage, int initialFuelLevel, UUID managerId) {
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new RuntimeException("Бронирование не найдено: " + reservationId));
+
+        if (reservation.getStatus() != ru.skfu.carrental.entity.enums.ReservationStatus.CONFIRMED) {
+            throw new IllegalStateException("Можно выдать только подтверждённое бронирование (текущий статус: "
+                    + reservation.getStatus() + ")");
+        }
+
+        // State pattern: ConfirmedState.handoverCar()
+        reservation.getState().handoverCar(reservation);
+
+        Car car = reservation.getCar();
+        if (car != null) {
+            car.setStatus(CarStatus.RENTED);
+            car.setCurrentMileage(initialMileage);
+            car.setFuelLevelPercentage(initialFuelLevel);
+            carRepository.save(car);
+        }
+
+        reservationRepository.save(reservation);
+
+        // Create RentalAgreement
+        RentalAgreement agreement = new RentalAgreement();
+        agreement.setReservation(reservation);
+        agreement.setAgreementNumber("AG-" + reservationId.toString().substring(0, 8).toUpperCase());
+        agreement.setSignedAt(java.time.LocalDateTime.now());
+        agreement.setInitialMileage(initialMileage);
+        agreement.setInitialFuelLevel(initialFuelLevel);
+        agreement.setActive(true);
+        return rentalAgreementRepository.save(agreement);
+    }
+
+    @Override
+    public RentalAgreement returnCar(UUID reservationId, long finalMileage, int finalFuelLevel, UUID managerId) {
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new RuntimeException("Бронирование не найдено: " + reservationId));
+
+        if (reservation.getStatus() != ru.skfu.carrental.entity.enums.ReservationStatus.ACTIVE) {
+            throw new IllegalStateException("Можно завершить только активную аренду (текущий статус: "
+                    + reservation.getStatus() + ")");
+        }
+
+        // Find existing rental agreement
+        RentalAgreement agreement = rentalAgreementRepository.findByReservationId(reservationId)
+                .orElseThrow(() -> new RuntimeException("Договор аренды не найден для бронирования " + reservationId));
+
+        agreement.setFinalMileage(finalMileage);
+        agreement.setFinalFuelLevel(finalFuelLevel);
+        agreement.setActive(false);
+        agreement.setUpdatedAt(java.time.LocalDateTime.now());
+        rentalAgreementRepository.save(agreement);
+
+        // Complete reservation via State pattern
+        reservation.getState().completeRental(reservation);
+
+        Car car = reservation.getCar();
+        if (car != null) {
+            car.setStatus(CarStatus.AVAILABLE);
+            car.setCurrentMileage(finalMileage);
+            car.setFuelLevelPercentage(finalFuelLevel);
+            carRepository.save(car);
+        }
+
+        reservationRepository.save(reservation);
+        return agreement;
     }
 
     @Override

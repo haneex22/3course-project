@@ -130,6 +130,15 @@ docker-compose up -d
 |-------|------|------|----------|
 | GET | `/api/v1/admin/cars` | MANAGER/ADMIN | Весь автопарк |
 | POST | `/api/v1/admin/cars` | ADMIN | Добавить авто |
+| PUT | `/api/v1/admin/cars/{id}` | ADMIN | Редактировать авто |
+| DELETE | `/api/v1/admin/cars/{id}` | ADMIN | Удалить авто |
+| GET | `/api/v1/admin/bookings` | MANAGER/ADMIN | Все бронирования |
+| GET | `/api/v1/admin/bookings/{id}` | MANAGER/ADMIN | Детали брони |
+| POST | `/api/v1/admin/bookings/{id}/cancel` | ADMIN | Отменить бронь |
+| POST | `/api/v1/admin/bookings/{id}/handover` | MANAGER | Выдать авто (UC-007) |
+| POST | `/api/v1/admin/bookings/{id}/return` | MANAGER | Принять возврат (UC-008) |
+| GET | `/api/v1/admin/clients/unverified` | MANAGER/ADMIN | Неверифиц. клиенты |
+| PUT | `/api/v1/admin/clients/{userId}/verify` | ADMIN | Верифицировать клиента |
 
 ## Реализованные паттерны GoF
 - **State** — жизненный цикл бронирования (Pending → Confirmed → Active → Cancelled)
@@ -151,7 +160,8 @@ docker-compose up -d
 - ✅ EncryptedSharedPreferences для JWT
 - ✅ Swagger UI с JWT Bearer авторизацией
 - ✅ GitHub Actions CI/CD
-- ✅ Покрытие тестами >40% (7 классов backend + Android)
+- ✅ Покрытие тестами >40% (12 классов backend + Android)
+- ✅ Выдача и приём автомобилей (UC-007, UC-008)
 - ✅ Обработка ошибок с понятными сообщениями на русском
 
 ## Оценка по COCOMO

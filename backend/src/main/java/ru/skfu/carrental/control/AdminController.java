@@ -4,12 +4,19 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import ru.skfu.carrental.dto.request.CarCreateRequest;
+import ru.skfu.carrental.dto.request.HandoverRequest;
+import ru.skfu.carrental.dto.request.ReturnRequest;
 import ru.skfu.carrental.dto.response.AdminBookingResponse;
 import ru.skfu.carrental.dto.response.CarResponse;
+import ru.skfu.carrental.dto.response.RentalAgreementResponse;
 import ru.skfu.carrental.dto.response.UnverifiedClientResponse;
+import ru.skfu.carrental.entity.RentalAgreement;
+import ru.skfu.carrental.entity.User;
 import ru.skfu.carrental.foundation.ClientProfileRepository;
+import ru.skfu.carrental.foundation.UserRepository;
 import ru.skfu.carrental.mediator.CarService;
 import ru.skfu.carrental.mediator.ReservationService;
 
@@ -25,12 +32,16 @@ public class AdminController {
     private final CarService carService;
     private final ClientProfileRepository clientProfileRepository;
     private final ReservationService reservationService;
+    private final UserRepository userRepository;
 
-    public AdminController(CarService carService, ClientProfileRepository clientProfileRepository,
-                           ReservationService reservationService) {
+    public AdminController(CarService carService,
+                           ClientProfileRepository clientProfileRepository,
+                           ReservationService reservationService,
+                           UserRepository userRepository) {
         this.carService = carService;
         this.clientProfileRepository = clientProfileRepository;
         this.reservationService = reservationService;
+        this.userRepository = userRepository;
     }
 
     // ---- Cars ----
@@ -78,6 +89,28 @@ public class AdminController {
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping("/bookings/{id}/handover")
+    @PreAuthorize("hasRole('MANAGER')")
+    public ResponseEntity<RentalAgreementResponse> handoverCar(
+            @PathVariable UUID id,
+            @Valid @RequestBody HandoverRequest request,
+            @AuthenticationPrincipal User user) {
+        RentalAgreement agreement = reservationService.handoverCar(
+                id, request.getInitialMileage(), request.getInitialFuelLevel(), user.getId());
+        return ResponseEntity.ok(toAgreementResponse(agreement));
+    }
+
+    @PostMapping("/bookings/{id}/return")
+    @PreAuthorize("hasRole('MANAGER')")
+    public ResponseEntity<RentalAgreementResponse> returnCar(
+            @PathVariable UUID id,
+            @Valid @RequestBody ReturnRequest request,
+            @AuthenticationPrincipal User user) {
+        RentalAgreement agreement = reservationService.returnCar(
+                id, request.getFinalMileage(), request.getFinalFuelLevel(), user.getId());
+        return ResponseEntity.ok(toAgreementResponse(agreement));
+    }
+
     // ---- Client verification ----
 
     @GetMapping("/clients/unverified")
@@ -110,5 +143,26 @@ public class AdminController {
                     return ResponseEntity.ok().<Void>build();
                 })
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    private RentalAgreementResponse toAgreementResponse(RentalAgreement a) {
+        RentalAgreementResponse r = new RentalAgreementResponse();
+        r.setId(a.getId());
+        r.setReservationId(a.getReservation() != null ? a.getReservation().getId() : null);
+        r.setAgreementNumber(a.getAgreementNumber());
+        r.setSignedAt(a.getSignedAt());
+        r.setInitialMileage(a.getInitialMileage());
+        r.setInitialFuelLevel(a.getInitialFuelLevel());
+        r.setFinalMileage(a.getFinalMileage() != null ? a.getFinalMileage() : 0);
+        r.setFinalFuelLevel(a.getFinalFuelLevel() != null ? a.getFinalFuelLevel() : 0);
+        r.setActive(a.isActive());
+        if (a.getReservation() != null && a.getReservation().getCar() != null) {
+            r.setCarModelName(a.getReservation().getCar().getModelName());
+        }
+        if (a.getReservation() != null) {
+            userRepository.findById(a.getReservation().getClientId())
+                    .ifPresent(u -> r.setClientEmail(u.getEmail()));
+        }
+        return r;
     }
 }

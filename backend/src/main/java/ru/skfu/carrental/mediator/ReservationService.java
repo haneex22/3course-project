@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 import ru.skfu.carrental.dto.response.AdminBookingResponse;
+import ru.skfu.carrental.entity.RentalAgreement;
 
 public interface ReservationService {
     Reservation bookCar(UUID clientId, BookingRequest request);
@@ -22,4 +23,8 @@ public interface ReservationService {
     // Admin methods
     List<AdminBookingResponse> getAllReservations();
     AdminBookingResponse getReservationByIdForAdmin(UUID id);
+
+    // Car handover & return (UC-007, UC-008)
+    RentalAgreement handoverCar(UUID reservationId, long initialMileage, int initialFuelLevel, UUID managerId);
+    RentalAgreement returnCar(UUID reservationId, long finalMileage, int finalFuelLevel, UUID managerId);
 }

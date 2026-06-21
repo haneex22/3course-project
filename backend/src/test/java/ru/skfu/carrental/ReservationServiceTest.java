@@ -36,6 +36,8 @@ class ReservationServiceTest {
     @Mock private ReservationRepository reservationRepository;
     @Mock private CarRepository carRepository;
     @Mock private ClientProfileRepository clientProfileRepository;
+    @Mock private ru.skfu.carrental.foundation.UserRepository userRepository;
+    @Mock private ru.skfu.carrental.foundation.RentalAgreementRepository rentalAgreementRepository;
 
     @InjectMocks
     private ReservationServiceImpl reservationService;
@@ -73,13 +75,14 @@ class ReservationServiceTest {
         when(reservationRepository.existsConflictingReservation(any(), any(), any())).thenReturn(false);
         when(carRepository.findById(car.getId())).thenReturn(Optional.of(car));
         when(reservationRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
-        when(carRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
 
         Reservation result = reservationService.bookCar(clientId, request);
 
         assertThat(result.getStatus()).isEqualTo(ReservationStatus.PENDING);
         assertThat(result.getClientId()).isEqualTo(clientId);
-        assertThat(car.getStatus()).isEqualTo(CarStatus.RESERVED);
+        // Статус машины НЕ меняется: доступность определяется датами броней,
+        // поэтому авто остаётся в каталоге для бронирования на свободные даты
+        assertThat(car.getStatus()).isEqualTo(CarStatus.AVAILABLE);
     }
 
     @Test

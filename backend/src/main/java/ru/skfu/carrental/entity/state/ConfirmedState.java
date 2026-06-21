@@ -21,6 +21,11 @@ public class ConfirmedState implements ReservationState {
     }
 
     @Override
+    public void completeRental(Reservation reservation) {
+        throw new IllegalStateException("Cannot complete rental: car has not been handed over yet");
+    }
+
+    @Override
     public String getStatusName() {
         return "CONFIRMED";
     }
