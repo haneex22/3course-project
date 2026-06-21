@@ -33,33 +33,47 @@ class CatalogViewModel : ViewModel() {
     fun loadCars(context: Context, carClass: String? = null, startDate: String? = null, endDate: String? = null) {
         val isFiltered = startDate != null && endDate != null
         viewModelScope.launch {
-            _uiState.value = _uiState.value.copy(isLoading = true)
+            _uiState.value = _uiState.value.copy(isLoading = true, error = null)
             try {
                 val response = ApiClient.carApi.getCars(carClass, startDate, endDate)
                 if (response.isSuccessful && response.body() != null) {
                     val cars = response.body()!!
-                    // Кэшируем только полный список (без фильтра по датам), чтобы офлайн был полным
                     if (!isFiltered) updateCache(context, cars)
                     allCars = cars
                     _uiState.value = _uiState.value.copy(isLoading = false, isFromCache = false, error = null)
                     applyFilters()
                 } else if (isFiltered) {
-                    // При фильтре по датам НЕ показываем весь кэш — иначе всплывут занятые авто
                     allCars = emptyList()
-                    _uiState.value = _uiState.value.copy(isLoading = false, isFromCache = false,
-                        error = "Не удалось проверить доступность на эти даты")
+                    val errorMsg = when (response.code()) {
+                        401 -> "Сессия истекла, войдите заново"
+                        403 -> "Недостаточно прав для просмотра каталога"
+                        500 -> "Ошибка сервера, попробуйте позже"
+                        else -> "Не удалось загрузить каталог (код ${response.code()})"
+                    }
+                    _uiState.value = _uiState.value.copy(isLoading = false, isFromCache = false, error = errorMsg)
                     applyFilters()
                 } else {
+                    val errorMsg = "Не удалось загрузить каталог (код ${response.code()})"
+                    _uiState.value = _uiState.value.copy(isLoading = false, isFromCache = false, error = errorMsg)
                     loadFromCache(context)
                 }
             } catch (e: Exception) {
+                val errorMsg = when {
+                    e.message?.contains("Unable to resolve host") == true ||
+                    e.message?.contains("Connection refused") == true ->
+                        "Сервер недоступен. Убедитесь, что бэкенд запущен"
+                    e.message?.contains("timeout") == true ||
+                    e.message?.contains("timed out") == true ->
+                        "Сервер не отвечает (таймаут)"
+                    else -> null // Показываем кэш без сообщения об ошибке
+                }
                 if (isFiltered) {
                     allCars = emptyList()
                     _uiState.value = _uiState.value.copy(isLoading = false, isFromCache = false,
-                        error = "Нет соединения с сервером")
+                        error = errorMsg ?: "Нет соединения с сервером")
                     applyFilters()
                 } else {
-                    loadFromCache(context)
+                    loadFromCache(context, errorMsg)
                 }
             }
         }
@@ -90,14 +104,14 @@ class CatalogViewModel : ViewModel() {
         _uiState.value = _uiState.value.copy(cars = result)
     }
 
-    private suspend fun loadFromCache(context: Context) {
+    private suspend fun loadFromCache(context: Context, apiError: String? = null) {
         val db = AppDatabase.getInstance(context)
         val cached = db.carDao().getAllCars()
         allCars = cached.map { it.toDto() }
         _uiState.value = _uiState.value.copy(
             isLoading = false,
             isFromCache = true,
-            error = if (allCars.isEmpty()) "Нет соединения, а кэш пуст" else null
+            error = if (allCars.isEmpty()) (apiError ?: "Нет соединения, а кэш пуст") else apiError
         )
         applyFilters()
     }

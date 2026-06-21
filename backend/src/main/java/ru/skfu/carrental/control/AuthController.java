@@ -26,9 +26,6 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<Void> register(@Valid @RequestBody RegisterRequest request) {
-        if (!request.getPassword().equals(request.getConfirmPassword())) {
-            return ResponseEntity.badRequest().build();
-        }
         authService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

@@ -3,6 +3,7 @@ package com.example.carrentalapp.statemanagement
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.carrentalapp.apiclient.ApiClient
+import com.example.carrentalapp.localcache.TokenStorage
 import com.example.carrentalapp.model.BookingRequest
 import com.example.carrentalapp.model.BusyPeriod
 import com.example.carrentalapp.model.CarDto
@@ -59,7 +60,7 @@ class BookingViewModel : ViewModel() {
             .toDouble()
     }
 
-    fun createBooking(carId: String, startDateTime: String, endDateTime: String) {
+    fun createBooking(carId: String, startDateTime: String, endDateTime: String, context: android.content.Context? = null) {
         viewModelScope.launch {
             _uiState.value = BookingUiState.Loading
             try {
@@ -69,9 +70,14 @@ class BookingViewModel : ViewModel() {
                 if (response.isSuccessful && response.body() != null) {
                     _uiState.value = BookingUiState.Success(response.body()!!)
                 } else {
+                    val role = context?.let { TokenStorage.getRole(it) } ?: ""
                     val msg = when (response.code()) {
                         409 -> "Эти даты уже заняты, выберите другие"
-                        403 -> "Подтвердите профиль, чтобы бронировать"
+                        403 -> if (role in listOf("ADMIN", "MANAGER")) {
+                            "Администраторы не могут бронировать. Используйте панель управления."
+                        } else {
+                            "Подтвердите профиль, чтобы бронировать"
+                        }
                         400 -> "Проверьте выбранные даты"
                         else -> "Не удалось забронировать (${response.code()})"
                     }

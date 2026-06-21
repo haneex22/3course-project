@@ -3,6 +3,7 @@ package ru.skfu.carrental.mediator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.skfu.carrental.dto.request.BookingRequest;
+import ru.skfu.carrental.dto.response.AdminBookingResponse;
 import ru.skfu.carrental.dto.response.BusyPeriodResponse;
 import ru.skfu.carrental.dto.response.ReservationResponse;
 import ru.skfu.carrental.entity.Car;
@@ -15,6 +16,7 @@ import ru.skfu.carrental.exception.UserNotVerifiedException;
 import ru.skfu.carrental.foundation.CarRepository;
 import ru.skfu.carrental.foundation.ClientProfileRepository;
 import ru.skfu.carrental.foundation.ReservationRepository;
+import ru.skfu.carrental.foundation.UserRepository;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -30,18 +32,26 @@ public class ReservationServiceImpl implements ReservationService {
     private final CarRepository carRepository;
     private final ClientProfileRepository clientProfileRepository;
 
+    private final UserRepository userRepository;
+
     public ReservationServiceImpl(ReservationRepository reservationRepository,
                                    CarRepository carRepository,
-                                   ClientProfileRepository clientProfileRepository) {
+                                   ClientProfileRepository clientProfileRepository,
+                                   UserRepository userRepository) {
         this.reservationRepository = reservationRepository;
         this.carRepository = carRepository;
         this.clientProfileRepository = clientProfileRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
     public Reservation bookCar(UUID clientId, BookingRequest request) {
-        clientProfileRepository.findById(clientId)
+        ClientProfile profile = clientProfileRepository.findById(clientId)
                 .orElseThrow(() -> new RuntimeException("Client profile not found"));
+
+        if (!profile.isVerified()) {
+            throw new UserNotVerifiedException("Необходима верификация документов для бронирования");
+        }
 
         if (request.getEndDateTime().isBefore(request.getStartDateTime()) ||
                 request.getEndDateTime().isEqual(request.getStartDateTime())) {
@@ -139,6 +149,21 @@ public class ReservationServiceImpl implements ReservationService {
         reservationRepository.save(reservation);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<AdminBookingResponse> getAllReservations() {
+        return reservationRepository.findAllByOrderByCreatedAtDesc()
+                .stream().map(this::toAdminResponse).collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public AdminBookingResponse getReservationByIdForAdmin(UUID id) {
+        Reservation r = reservationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Бронирование не найдено"));
+        return toAdminResponse(r);
+    }
+
     private PricingStrategy selectStrategy(BookingRequest request) {
         return WeekendPricingStrategy.hasWeekend(request.getStartDateTime(), request.getEndDateTime())
                 ? new WeekendPricingStrategy()
@@ -156,6 +181,23 @@ public class ReservationServiceImpl implements ReservationService {
         resp.setAmount(r.getAmount());
         resp.setCurrency(r.getCurrency());
         resp.setCreatedAt(r.getCreatedAt());
+        return resp;
+    }
+
+    private AdminBookingResponse toAdminResponse(Reservation r) {
+        AdminBookingResponse resp = new AdminBookingResponse();
+        resp.setId(r.getId());
+        resp.setCarId(r.getCar() != null ? r.getCar().getId() : null);
+        resp.setCarModelName(r.getCar() != null ? r.getCar().getModelName() : "");
+        resp.setClientId(r.getClientId());
+        resp.setStartDateTime(r.getStartDateTime());
+        resp.setEndDateTime(r.getEndDateTime());
+        resp.setStatus(r.getStatus().name());
+        resp.setAmount(r.getAmount());
+        resp.setCurrency(r.getCurrency());
+        resp.setCreatedAt(r.getCreatedAt());
+        // Resolve client email
+        userRepository.findById(r.getClientId()).ifPresent(u -> resp.setClientEmail(u.getEmail()));
         return resp;
     }
 }

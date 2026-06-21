@@ -1,9 +1,11 @@
 package com.example.carrentalapp.apiclient
 
+import com.example.carrentalapp.model.AdminBookingDto
 import com.example.carrentalapp.model.AdminCarRequest
 import com.example.carrentalapp.model.BusyPeriod
 import com.example.carrentalapp.model.CarDto
 import com.example.carrentalapp.model.CarStatusUpdateRequest
+import com.example.carrentalapp.model.UnverifiedClient
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -32,4 +34,28 @@ interface CarApiService {
 
     @POST("api/v1/admin/cars")
     suspend fun addCar(@Body request: AdminCarRequest): Response<CarDto>
+
+    @GET("api/v1/admin/clients/unverified")
+    suspend fun getUnverifiedClients(): Response<List<UnverifiedClient>>
+
+    @PUT("api/v1/admin/clients/{userId}/verify")
+    suspend fun verifyClient(@Path("userId") userId: String): Response<Void>
+
+    @PUT("api/v1/admin/cars/{id}")
+    suspend fun updateCar(
+        @Path("id") id: String,
+        @Body request: AdminCarRequest
+    ): Response<CarDto>
+
+    @DELETE("api/v1/admin/cars/{id}")
+    suspend fun deleteCar(@Path("id") id: String): Response<Void>
+
+    @GET("api/v1/admin/bookings")
+    suspend fun getAllBookingsAdmin(): Response<List<AdminBookingDto>>
+
+    @GET("api/v1/admin/bookings/{id}")
+    suspend fun getBookingByIdAdmin(@Path("id") id: String): Response<AdminBookingDto>
+
+    @POST("api/v1/admin/bookings/{id}/cancel")
+    suspend fun cancelBookingAdmin(@Path("id") id: String): Response<Void>
 }

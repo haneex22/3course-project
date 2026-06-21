@@ -51,6 +51,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void register(RegisterRequest request) {
+        if (!request.getPassword().equals(request.getConfirmPassword())) {
+            throw new IllegalArgumentException("Пароли не совпадают");
+        }
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new EmailAlreadyExistsException("Пользователь с таким email уже зарегистрирован");
         }

@@ -9,6 +9,7 @@ import ru.skfu.carrental.entity.Car;
 import ru.skfu.carrental.entity.enums.CarStatus;
 import ru.skfu.carrental.exception.CarNotAvailableException;
 import ru.skfu.carrental.foundation.CarRepository;
+import ru.skfu.carrental.foundation.ReservationRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,9 +21,11 @@ import java.util.stream.Collectors;
 public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
+    private final ReservationRepository reservationRepository;
 
-    public CarServiceImpl(CarRepository carRepository) {
+    public CarServiceImpl(CarRepository carRepository, ReservationRepository reservationRepository) {
         this.carRepository = carRepository;
+        this.reservationRepository = reservationRepository;
     }
 
     @Override
@@ -64,14 +67,33 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarResponse createCar(CarCreateRequest request) {
         Car car = new Car();
+        applyCarRequest(car, request);
+        car.setStatus(CarStatus.AVAILABLE);
+        return toResponse(carRepository.save(car));
+    }
+
+    @Override
+    public CarResponse updateCar(UUID id, CarCreateRequest request) {
+        Car car = getCarEntityById(id);
+        applyCarRequest(car, request);
+        return toResponse(carRepository.save(car));
+    }
+
+    private void applyCarRequest(Car car, CarCreateRequest request) {
         car.setVin(request.getVin());
         car.setLicensePlate(request.getLicensePlate());
         car.setModelName(request.getModelName());
         car.setCarClass(request.getCarClass());
         car.setBaseDailyRate(request.getBaseDailyRate());
         car.setImageUrl(request.getImageUrl());
-        car.setStatus(CarStatus.AVAILABLE);
-        return toResponse(carRepository.save(car));
+    }
+
+    @Override
+    public void deleteCar(UUID id) {
+        Car car = getCarEntityById(id);
+        // Удаляем все бронирования, связанные с авто (FK constraint не даст удалить иначе)
+        reservationRepository.deleteByCarId(id);
+        carRepository.delete(car);
     }
 
     @Override

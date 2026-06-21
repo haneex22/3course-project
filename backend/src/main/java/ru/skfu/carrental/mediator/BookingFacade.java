@@ -5,7 +5,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.skfu.carrental.dto.request.BookingRequest;
 import ru.skfu.carrental.dto.response.ReservationResponse;
 import ru.skfu.carrental.entity.Reservation;
-import ru.skfu.carrental.entity.enums.ReservationStatus;
 import ru.skfu.carrental.foundation.ReservationRepository;
 
 import java.util.UUID;
@@ -43,6 +42,7 @@ public class BookingFacade {
         // 4. Async notification
         notificationService.sendBookingConfirmationAsync(clientId, reservation.getId());
 
-        return ((ReservationServiceImpl) reservationService).toResponse(reservation);
+        // 5. Return response using the service method (no downcast needed)
+        return reservationService.toResponse(reservation);
     }
 }

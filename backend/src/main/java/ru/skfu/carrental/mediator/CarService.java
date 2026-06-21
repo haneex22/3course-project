@@ -14,6 +14,8 @@ public interface CarService {
     CarResponse getCarById(UUID id);
     CarResponse updateCarStatus(UUID id, CarStatusUpdateRequest request);
     CarResponse createCar(CarCreateRequest request);
+    CarResponse updateCar(UUID id, CarCreateRequest request);
     List<CarResponse> getAllCars();
     Car getCarEntityById(UUID id);
+    void deleteCar(UUID id);
 }

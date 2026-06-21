@@ -14,6 +14,8 @@ import java.util.UUID;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, UUID> {
 
+    List<Reservation> findAllByOrderByCreatedAtDesc();
+
     List<Reservation> findByClientIdOrderByCreatedAtDesc(UUID clientId);
 
     List<Reservation> findByClientIdAndStatusIn(UUID clientId, List<ReservationStatus> statuses);
@@ -37,4 +39,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
            "AND r.status NOT IN ('CANCELLED', 'COMPLETED') " +
            "AND r.endDateTime >= :now ORDER BY r.startDateTime")
     List<Reservation> findActiveByCarId(@Param("carId") UUID carId, @Param("now") LocalDateTime now);
+
+    void deleteByCarId(UUID carId);
 }

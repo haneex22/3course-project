@@ -1,0 +1,1554 @@
+CTEPCTBO      
+       «-  »
+        « »    09.03.04 « »  () «    »
+ 2026
+
+ 1. -
+1.1.        :     ,    « »,      ,            -         PCMEF (Presentation-ControlMediator-Entity-Foundation).
+  : 1.     -  . 2.      . 3.        PCMEF. 4.       SOLID    5.       . 6.        . 7.     . 8.  API      (  ) 9.    10.     
+1.2.    
+
+1.2.1.    (18 )
+
+ 
+
+1-2
+
+ 0: 
+
+3-4
+
+ 1: 
+
+5-6
+
+ 2: 
+
+7-8
+
+ 3:  
+
+9-10
+
+ 4:  
+
+11-12
+
+ 5:  
+
+13-14
+
+ 6: 
+
+15-16
+
+ 7: 
+
+17-18
+
+ 8: 
+
+   5% 10% 10% 10% 10% 15% 10% 15% 15%
+
+1.2.2.   
+
+ : -      -         -      
+
+1.2.3.   
+
+  Git   : https://github.com/student-name/course-project
+
+ :
+
+**    Markdown:
+1.         Markdown (.md)
+
+2.       README.md   
+3.          docs/XX-/
+4.   (, )     docs/images/
+5.     Markdown   : ![](images/file.png)
+   Git-: 1.   README.md    " " 2.       GitHub Insights (  ):
+-    (Commit Activity) -   (Punch Card) -   / 3.         ( ) 4.     docs/images/   git-stats*.png 5.      : -    -   (    )
+   :
+```markdown ##   ###  Git -  : 47
+
+- : 01.03.2026 - 30.05.2026 -  : 2.9 /
+###   ![ ](images/git-commit-activity.png) ###   ![  ](images/git-punch-card.png)
+
+1.3.    1.3.1.  : PCMEF              PCMEF (Presentation-Control-Mediator-EntityFoundation).     , : -      ; -     ; -     ; -     .
+
+ PCMEF:
+
+ 
+
+
+
+
+
+
+
+P
+
+Presentation 
+
+C
+
+Control
+
+
+
+M
+
+Mediator
+
+
+
+
+
+
+
+,
+
+ 
+
+
+
+,
+
+, 
+
+-, ,
+
+
+
+E
+
+Entity
+
+
+
+-, ,
+
+  
+
+F
+
+Foundation 
+
+
+
+
+
+,
+
+, 
+
+ :    .      ,   .    .
+
+1.3.2.   
+
+ . 
+. 
+ . 
+. Enterprise
+
+  , 
+
+ ,  
+/   
+  + API + 
+
+ ()
+Java Swing/JavaFX, SQLite/PostgreS
+QL JSP/Servlets/Spri
+ng MVC, PostgreSQL
+Android (Java/Kotlin), Flutter, React Native + Java
+Backend Full Stack, REST,
+Docker, Cloud
+
+ 3-4
+5
+5
+ 
+ ,  
+
+1.3.3.  : -
+
+:            .
+
+ PCMEF:
+
+-   (P, C, M, E, F)    JVM-
+
+-    --   
+
+- Presentation-   Swing  JavaFX
+
+ :
+
+
+
+
+
+
+
+Java 17+
+
+UI
+
+Java Swing / JavaFX
+
+
+
+SQLite / PostgreSQL
+
+   JDBC / JPA
+
+
+
+Maven / Gradle
+
+ : - Desktop UI  5+  -   - CRUD-    -   (JUnit,  >40%) -   (Markdown)
+
+1.3.4.  : - :  -        Java.
+
+ PCMEF:
+
+- Presentation-   (HTML/CSS/JavaScript)
+
+- Control, Mediator, Entity, Foundation  
+
+-   HTTP/JSON (REST API)
+
+ :
+
+
+
+
+
+      ORM 
+
+Java 17+ Spring Boot / Servlets + JSP
+HTML, CSS, JavaScript PostgreSQL Spring Data JPA / Hibernate Maven / Gradle
+
+ : - Web UI  5+  -    () - REST API   -   (JUnit,  >40%) -   - (Tomcat)
+
+1.3.5.  :   :  -      Java.  PCMEF ():
+
+    :
+
+ Android Native
+Flutter
+React Native
+
+
+
+
+
+Kotlin + Jetpack Compose/XML +  Android,
+
+Retrofit + Room
+
+   API
+
+Dart + Widgets + Dio + SQLite ,
+
+  
+
+TypeScript + React Native + Axios ,
+
++ AsyncStorage
+
+ JS
+
+  (   ):
+
+
+
+
+
+
+
+Java 17+
+
+
+
+Spring Boot
+
+
+
+PostgreSQL
+
+ORM
+
+Spring Data JPA
+
+API
+
+REST + OpenAPI/Swagger
+
+ JWT + Spring Security
+
+
+
+Maven / Gradle
+
+ : -    5+  -    Java (Spring Boot) - REST API (8+ )   OpenAPI -   JWT -   (-) -    ( >40%)
+
+1.3.6.  : Enterprise ( )
+
+:          .
+
+ PCMEF: - Desktop  Web  (  ) - REST API   -         -   
+
+ :
+
+
+
+
+
+Desktop UI
+
+JavaFX / Swing
+
+Web UI
+
+React / Angular / Vue + TypeScript
+
+
+
+Java + Spring Boot
+
+API
+
+REST + GraphQL ()
+
+
+
+PostgreSQL
+
+
+
+Redis ()
+
+ Docker + docker-compose
+
+CI/CD
+
+GitHub Actions / GitLab CI
+
+ Spring Security + JWT + OAuth2
+
+ : -    (Desktop + Web) -  REST API (15+ ) -  OpenAPI (Swagger) -   (, JWT, HTTPS) -  (Docker + docker-compose) -   - CI/CD pipeline
+
+1.3.7.      
+
+
+
+:  : 
+
+:
+
+:
+
+ Enterprise
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+~2000  ~3000  ~4000  ~6000+
+
+
+
+
+
+Java, , Java,
+
+Java
+
++ Full Stack
+
+
+
+SQL
+
+HTML/CSS, 
+
+HTTP
+
+
+
+   
+
+
+
+ 
+
+
+
+
+
+ ~80  ~100  ~120  ~160 
+
+ 2.   (  )
+
+2.1.  0:   - ( 1-2)
+
+2.1.1.      : -        -   ( 5-7 -) -   ,     -    
+
+ :
+
+
+
+
+
+1
+
+ 
+
+2
+
+ 
+
+      
+
+3
+
+ 
+
+4
+
+
+
+5
+
+
+
+6
+
+
+
+7
+
+
+
+8
+
+
+
+9
+
+
+
+10    11   
+
+12   
+
+13 
+
+14 
+
+15 
+
+  
+
+
+
+  
+
+(LMS)
+
+   -
+
+
+
+     
+
+  
+
+
+
+
+
+
+
+
+
+ 
+
+  
+
+
+
+   
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+   
+
+
+
+2.1.2.  
+
+
+
+
+
+
+
+ 
+
+Executive Summary (1 
+
+.)
+
+ - IDEF0 A-0
+
+UML-
+
+
+
+BUC-
+
+-
+
+UML-
+
+-
+
+15+ 
+
+
+
+ - 
+
+UML-
+
+
+
+  
+
+
+
+ 
+
+SWOT-
+
+
+
+ 
+
+
+
+2.2.  1:   ( 3-4)
+
+2.2.1.   -   
+
+ :
+
+
+
+- ( 0)   ( 1)
+
+
+
+        
+
+  
+
+
+
+-
+
+ 
+
+ -
+
+ 
+
+
+
+    
+
+
+
+2.2.2.  
+
+
+
+
+
+
+
+Use Case 
+
+  UML-
+
+Domain Model
+
+  UML-
+
+
+
+   ()  
+
+2+  
+
+Use Case
+
+20+   
+
+
+
+
+
+- 
+
+
+
+
+
+
+
+2.3.  2:   ( 5-6)
+
+2.3.1.   PCMEF
+
+  PCMEF:
+
+
+
+
+
+
+
+
+
+    
+
+
+
+ : P  C  M  E  F
+
+
+
+
+
+     -
+
+
+
+  
+
+ 
+
+
+
+  
+
+
+
+ 
+
+
+
+      
+
+ 
+
+
+
+ :
+
+
+
+
+
+ 
+
+Presentation (P) Control (C) Mediator (M) Entity (E) Foundation (F)
+
+UI, , 
+
+ -
+
+
+
+
+
+,   
+
+
+
+
+
+-, 
+
+  Presentation
+
+, -
+
+
+
+
+
+  
+
+  , SQL
+
+ -
+
+
+
+2.3.2.   
+Control  Mediator (IService): public interface IUserService {
+User getUserById(Long id); User createUser(User user); User authenticate(String email, String password); List<User> getAllUsers(); }
+Mediator  Foundation (IRepository): public interface IUserRepository {
+User findById(Long id); User save(User user); void delete(Long id); User findByEmail(String email); }
+
+2.3.3.  
+
+
+
+
+
+
+
+ 
+
+
+
+ UML-
+
+PCMEF
+
+
+
+
+
+  / Java-
+
+
+
+
+
+
+
+
+
+  UML-
+
+
+
+ADR
+
+
+
+
+
+
+
+2.4.  3:    ( 7-8) 2.4.1.   
+
+-   3   -       -      -   (NOT NULL, UNIQUE, CHECK)
+
+2.4.2.  
+
+
+
+
+
+
+
+ER-
+
+  UML-
+
+
+
+DDL-
+
+SQL-  SQL
+
+
+
+   Entity  
+
+ORM
+
+
+
+2.5.  4:   ( 9-10)
+
+2.5.1.  
+
+
+
+
+
+
+
+
+
+3+ 
+
+UML-
+
+
+
+    UML-
+
+
+
+    
+
+
+
+2.6.  5:   ( 11-12)
+
+2.6.1.    -    Entity  Foundation -   Use Cases  Mediator -   (JUnit,  >40%) -   PCMEF
+
+2.6.2.  
+
+
+
+
+
+
+
+ 
+
+ 
+
+Java
+
+ 
+
+JUnit-
+
+Java
+
+  
+
+JaCoCo/ Coverage report HTML
+
+2.7.  6:    ( 13-14)
+
+2.7.1.   
+
+
+
+
+
+
+
+Data Mapper Identity Map Lazy Load Unit of Work
+
+ -  
+
+  
+
+
+
+ 
+
+  
+
+   
+
+
+
+    Enterprise
+
+ 
+
+2.7.2.  
+
+
+
+
+
+
+
+  SonarQube / Checkstyle 
+
+
+
+-
+
+  Java
+
+ 
+
+
+
+ Java
+
+
+
+2.8.  7:    ( 17-18)
+
+2.8.1.  
+
+
+
+
+
+
+
+WBS
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+
+ COCOMO
+
+ 
+
+
+
+  
+
+ 
+
+
+
+
+
+   
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+      
+
+
+
+ 
+
+PDF/PPT
+
+ 3.    
+
+3.1.  :  
+
+3.1.1.   Desktop UI -  5  ( , /, ) -  CRUD    -     -      -    -  Swing  JavaFX
+
+,
+
+,
+
+3.1.2.    () -   (/) -   (BCrypt) -   ( 2 : )
+
+,
+
+3.1.3.    ( Docker)
+
+-   JAR- -     
+
+-    -   
+
+3.1.4.  
+
+
+
+
+
+
+
++2-4%
+
+
+
++2-3%
+
+ 
+
++1-2%
+
+  EXE/MSI       (/)
+
+3.2.  : -
+
+3.2.1.   Web UI -  5 - (, , , , ) -   (mobile/desktop) -    (JavaScript) - AJAX-    -    -  JSP/Thymeleaf  React/Angular/Vue
+
+3.2.2.    () -     -   (BCrypt) -     (ROLE_USER, ROLE_ADMIN) -   XSS  SQL- -   JWT-
+
+3.2.3.    (WAR) -  WAR- -     Tomcat/Jetty -     -    
+
+3.2.4.  
+
+
+
+
+
+
+
+REST API
+
++3-5%
+
+ REST API 
+
+
+
+Docker
+
++3-5%
+
+ 
+
+SPA- +2-4%
+
+ React/Vue/Angular
+
+WebSocket
+
++2-3%
+
+Real-time 
+
+3.3.  :   3.3.1.     -  5  (, , , , ) -  CRUD    -    REST API -   (, , ) -   (-) -   
+ Android Native: - Kotlin + Jetpack Compose / XML - ViewModel + LiveData/StateFlow - Retrofit + OkHttp - Room  
+
+ Flutter: - Dart + Widgets - BLoC / Riverpod / Provider - Dio  HTTP - SQLite / Isar / Hive
+ React Native: - TypeScript + React Native - Redux / MobX / Context API - Axios / Fetch API - AsyncStorage / SQLite
+3.3.2.    
+- Java + Spring Boot - REST API ( 8 ) -  OpenAPI (Swagger UI) -   JWT -   PostgreSQL -   ( >40%)
+ : POST /api/auth/login  POST /api/auth/register  GET /api/entities   GET /api/entities/{id}   ID POST /api/entities  PUT /api/entities/{id}  DELETE /api/entities/{id} 
+
+GET /api/entities/search   
+
+3.3.3.    - JWT-   -   (BCrypt) -   (: , ) -      - HTTPS (  )
+
+3.3.4.    - :  JAR/WAR,    - : APK (Android), IPA (iOS - ),      -    
+
+3.3.5.  
+
+
+
+ 
+
+- +2-4% -  
+
+Push- +2-4% FCM / APNs
+
+
+
++1-3% Fingerprint / Face ID  
+
+- +3-5%     
+
+
+
+
+
++4-7%   Google Play / App Store
+
+ +2-4%
+
+
+
+3.4.  : Enterprise ( ) 3.4.1.    ( )
+
+- Desktop UI: 5+   JavaFX/Swing - Web UI: 5+   React/Angular/Vue -  -    - REST API   
+
+3.4.2.    () - : JWT + refresh tokens - :    (ROLE_USER, ROLE_ADMIN, ROLE_MANAGER) - : CORS, CSRF, rate limiting - :    - HTTPS:  SSL/TLS
+
+3.4.3.   REST API - 15+  -   OpenAPI (Swagger UI + OpenAPI JSON) -      -  API (/api/v1/...) -  HTTP- (200, 201, 400, 401, 403, 404, 500) -   
+
+3.4.4.    () - Dockerfile    - Dockerfile    () - docker-compose.yml     ( +  + ) -      Docker
+
+3.4.5.  
+
+
+
+
+
+  +5-8%
+
+    (Android/iOS)
+
+Kubernetes CI/CD   GraphQL
+
++4-6% +3-5% +2-4% +2-3% +3-5%
+
+   GitHub Actions / GitLab CI Prometheus + Grafana Redis   /  REST
+
+ 4.  
+
+4.1.   (  )
+
+4.1.1.    (Executive Summary)
+
+ 
+
+1.  
+
+ : []
+
+: [Desktop / Web / Mobile / Enterprise]
+
+: []
+
+ : [..]
+
+  :
+
+[..]
+
+2. - : [2-3 :    ] : [2-3 :   ]
+
+3.   ·  1 ·  2 ·  3
+
+4.    ·  1: [ ] ·  2: [ ] ·  3: [ ]
+5.   ·  1: [ ] ·  2: [ ]
+4.1.2.    ()
+2.    2.1.     2.1.1.  / 2.1.2.    
+2.2.    (PCMEF) 2.2.1.   2.2.2.  
+2.3.    2.3.1.     2.3.2.    
+4.1.3.    PCMEF
+@startuml allowmixing title  PCMEF
+
+interface "IUserService" as IUS interface "IUserRepository" as IUR
+package "Presentation" { rectangle "MainWindow" as P
+}
+package "Control" { rectangle "UserController" as C C --> IUS : uses
+}
+package "Mediator" { rectangle "UserService" as M M ..|> IUS : implements M --> IUR : uses
+}
+package "Foundation" { rectangle "UserRepository" as F F ..|> IUR : implements
+}
+database "Database" as DB
+F --> DB : JDBC @enduml 4.2.    
+4.2.1.    (Android)
+
+  (PCMEF  Android): @startuml title Mobile PCMEF (Android)
+package "Mobile Client" { package "presentation" { rectangle "Activity" rectangle "Fragment" rectangle "Compose" }
+package "state_management" { rectangle "ViewModel" rectangle "StateFlow"
+}
+package "api_client" { rectangle "Retrofit" rectangle "API Interfaces"
+}
+package "local_cache" { rectangle "Room" rectangle "DAO"
+} }
+package "Server" { package "control" { rectangle "Controllers" }
+
+package "mediator" { rectangle "Services" } package "entity" { rectangle "JPA Entities" } package "foundation" { rectangle "Repositories" } }
+api_client --> control : REST @enduml
+ ViewModel: class EventViewModel : ViewModel() {
+private val _state = MutableStateFlow<EventState>(EventState.Loading) val state: StateFlow<EventState> = _state.asStateFlow()
+private val repository: EventRepository
+fun loadEvents() { viewModelScope.launch { _state.value = EventState.Loading try { val events = repository.getEvents() _state.value = EventState.Success(events) } catch (e: Exception) { _state.value = EventState.Error(e.message ?: "Unknown error") } }
+} }
+4.2.2.    (Flutter)
+
+class EventBloc extends Bloc<EventEvent, EventState> { final EventRepository repository;
+EventBloc(this.repository) : super(EventInitial()) { on<LoadEvents>((event, emit) async { emit(EventLoading()); try {
+final events = await repository.getEvents(); emit(EventLoaded(events)); } catch (e) { emit(EventError(e.toString())); } }); } }
+      
+        
+1.   1.1.    1.2.  - (IDEF0) 1.3. SWOT-   1.4.     1.5.   
+
+1.6.   (ROI)
+2.   2.1.     2.1.1. Use Case  2.1.2.   2.1.3.   2.2.    2.2.1. Domain Model ( ) 2.2.2.     2.2.3. - 2.3.   2.3.1.    2.3.2.   (PCMEF) 2.3.3.      2.3.4.   (ADR) 2.4.    2.4.1. ER- 2.4.2.    2.4.3. DDL- 2.5.   2.5.1.   2.5.2.    2.5.3.   GoF
+3.   3.1.  - 3.1.1.   3.1.2. - 3.1.3.    
+
+3.1.4.   3.2.   
+3.2.1.    3.2.2.   (Data Mapper, Identity Map) 3.2.3.   3.3.   3.3.1. Desktop  3.3.2. Web  3.3.3.   3.4.    3.4.1.    3.4.2.   3.4.3.    3.5. REST API 3.5.1.  OpenAPI 3.5.2.   3.5.3.  API
+4.     4.1.   4.2.   4.3.   4.4.   4.5.  
+5.    5.1.  (Docker) 5.2.    5.3.    5.4.   
+
+6.   6.1. WBS (  ) 6.2.   6.3.   (COCOMO) 6.4.  
+
+    
+
+  
+
+  .    .    .  
+
+ 5.  
+
+5.1.   (70% --   )
+
+
+
+
+
+
+
+
+
+-  - 3%
+
+IDEF0, BUC, ,
+
+(10%)
+
+
+
+-
+
+  4%
+
+SWOT, , CJM
+
+
+
+ 3%
+
+ROI  
+
+
+
+ (10%)
+
+Use
+
+Case 3%
+
+
+
+Domain Model 4%
+
+ 3%
+
+
+
+
+
+
+
+3%
+
+(15%)
+
+ PCMEF
+
+
+
+5%
+
+
+
+
+
+4%
+
+ 
+
+
+
+3%
+
+
+
+  
+
+3%
+
+(15%)
+
+
+
+-
+
+4%
+
+
+
+   4%
+
+
+
+
+
+4%
+
+
+
+
+
+
+
+3%
+
+(10%)
+
+
+
+Data Mapper
+
+4%
+
+Identity Map
+
+3%
+
+ 
+
+2%
+
+(10%)
+
+
+
+,   , , , -  2+ use cases
+
+
+
+
+
+
+
+ , 
+
+
+
+IService,
+
+IRepository
+
+
+
+ 
+
+ PCMEF
+
+ -,    
+
+ >40%
+
+         
+
+
+
+2%
+
+
+
+ 3%
+
+
+
+ 3%
+
+(WBS, )
+
+ ,  
+
+5.2.     (30%)
+
+5.2.1.    ()
+
+
+
+
+
+Desktop UI
+
+15%
+
+
+
+5%
+
+
+
+5%
+
+UX/
+
+5%
+
+ 5+ , ,     JAR +   
+
+5.2.2.    ()
+
+ 
+
+
+
+Web UI
+
+12% 5+ , , 
+
+REST API
+
+8% 8+ 
+
+ 5% , , 
+
+ 5% WAR + 
+
+5.2.3.    ()
+
+
+
+
+
+
+
+ UI
+
+10% 5+ , , Material Design
+
+  REST API JWT- -
+
+8% Java + Spring Boot,   5% 8+ , OpenAPI 3% ,  4% ,   
+
+5.2.4.    (Enterprise)
+
+
+
+
+
+
+
+Desktop + Web UI
+
+8%   
+
+REST API
+
+6% 15+ ,  
+
+
+
+5% JWT, , , 
+
+
+
+6% Docker + docker-compose
+
+
+
+5%  
+
+5.3.  
+
+
+
+. 
+
+
+
+
+
++5%
+
+
+
+
+
+
+
+
+
+
+
++5%
+
+CI/CD, , 
+
+ 
+
+
+
+  +3%
+
+CQRS, Event Sourcing, DDD
+
+
+
+
+
++2%
+
+GitHub  
+
+
+
+
+
++7%
+
+  
+
+
+
+5.4.  
+
+
+
+  
+
+-5%   
+
+ Git
+
+-10%
+
+  PCMEF -20%
+
+
+
+
+
+( -30% ()
+
+Mobile/Web/Enterprise)
+
+
+
+0 
+
+   1. , .        / . . -- .: , 2021. 2. , .    / . . -- 10- . -- .: , 2018. 3. , .   / . . -- .: , 2018. 4. , .    / . . -- .: , 2016.
+
+

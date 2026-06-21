@@ -11,6 +11,7 @@ import ru.skfu.carrental.entity.Car;
 import ru.skfu.carrental.entity.enums.CarStatus;
 import ru.skfu.carrental.exception.CarNotAvailableException;
 import ru.skfu.carrental.foundation.CarRepository;
+import ru.skfu.carrental.foundation.ReservationRepository;
 import ru.skfu.carrental.mediator.CarServiceImpl;
 
 import java.math.BigDecimal;
@@ -29,6 +30,8 @@ class CarServiceTest {
 
     @Mock
     private CarRepository carRepository;
+    @Mock
+    private ReservationRepository reservationRepository;
 
     @InjectMocks
     private CarServiceImpl carService;

@@ -20,7 +20,7 @@ public class ActiveState implements ReservationState {
         throw new IllegalStateException("Cannot cancel an active rental");
     }
 
-    public void completRental(Reservation reservation) {
+    public void completeRental(Reservation reservation) {
         reservation.setStatus(ReservationStatus.COMPLETED);
     }
 

@@ -10,11 +10,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AdminPanelSettings
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Logout
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -59,7 +62,10 @@ fun ProfileScreen(
         )
     }
 
+    val pullToRefreshState = rememberPullToRefreshState()
+
     Scaffold(
+        modifier = Modifier,
         topBar = {
             TopAppBar(
                 title = { Text("Профиль") },
@@ -68,51 +74,96 @@ fun ProfileScreen(
                         Icon(Icons.Default.ArrowBack, contentDescription = "Назад")
                     }
                 },
+                actions = {
+                    IconButton(onClick = { viewModel.refresh(context) }) {
+                        Icon(Icons.Default.Refresh, contentDescription = "Обновить")
+                    }
+                },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                    actionIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
         }
     ) { padding ->
-        LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(padding),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+        PullToRefreshBox(
+            isRefreshing = uiState.isLoading,
+            onRefresh = { viewModel.refresh(context) },
+            state = pullToRefreshState,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
         ) {
-            item { AccountCard(uiState.email, uiState.role, onAdminClick) }
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                item {
+                    OfflineBanner(uiState.isFromCache)
+                    AccountCard(uiState.email, uiState.role, onAdminClick)
+                }
 
-            item {
-                Text("Мои бронирования",
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold))
-            }
+                item {
+                    Text("Мои бронирования",
+                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold))
+                }
 
-            when {
-                uiState.isLoading -> item {
-                    Box(Modifier.fillMaxWidth().padding(24.dp), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator()
+                if (uiState.isLoading) {
+                    item {
+                        Box(Modifier.fillMaxWidth().padding(24.dp), contentAlignment = Alignment.Center) {
+                            CircularProgressIndicator()
+                        }
+                    }
+                } else if (uiState.error != null && uiState.reservations.isEmpty()) {
+                    item {
+                        Card(
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer),
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(
+                                uiState.error!!,
+                                modifier = Modifier.padding(16.dp),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onErrorContainer
+                            )
+                        }
+                    }
+                    item {
+                        OutlinedButton(
+                            onClick = { viewModel.refresh(context) },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Icon(Icons.Default.Refresh, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(Modifier.width(8.dp))
+                            Text("Повторить загрузку")
+                        }
+                    }
+                } else if (uiState.reservations.isEmpty()) {
+                    item {
+                        Text("У вас пока нет бронирований",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                } else {
+                    items(uiState.reservations) { reservation ->
+                        ReservationCard(reservation, onCancel = { cancelTarget = reservation })
                     }
                 }
-                uiState.reservations.isEmpty() -> item {
-                    Text("У вас пока нет бронирований",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-                else -> items(uiState.reservations) { reservation ->
-                    ReservationCard(reservation, onCancel = { cancelTarget = reservation })
-                }
-            }
 
-            item {
-                Spacer(Modifier.height(8.dp))
-                OutlinedButton(
-                    onClick = { viewModel.logout(context); onLogout() },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Icon(Icons.Default.Logout, contentDescription = null, modifier = Modifier.size(18.dp))
-                    Spacer(Modifier.width(8.dp))
-                    Text("Выйти")
+                item {
+                    Spacer(Modifier.height(8.dp))
+                    OutlinedButton(
+                        onClick = { viewModel.logout(context); onLogout() },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Icon(Icons.Default.Logout, contentDescription = null, modifier = Modifier.size(18.dp))
+                        Spacer(Modifier.width(8.dp))
+                        Text("Выйти")
+                    }
                 }
             }
         }
@@ -195,6 +246,23 @@ private fun ReservationCard(reservation: ReservationDto, onCancel: () -> Unit) {
                     Text("Отменить бронирование")
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun OfflineBanner(isFromCache: Boolean) {
+    if (isFromCache) {
+        Surface(
+            color = MaterialTheme.colorScheme.secondaryContainer,
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)
+        ) {
+            Text(
+                "  Офлайн-режим — данные из кэша",
+                style = MaterialTheme.typography.labelSmall,
+                modifier = Modifier.padding(12.dp)
+            )
         }
     }
 }

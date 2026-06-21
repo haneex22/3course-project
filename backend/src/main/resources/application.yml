@@ -4,6 +4,9 @@ spring:
     username: carrent_user
     password: carrent_pass
     driver-class-name: org.postgresql.Driver
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
   jpa:
     hibernate:
       ddl-auto: validate
@@ -23,6 +26,16 @@ app:
   jwt:
     secret: carRentalSecretKey2026ForJWTGeneration
     expiration: 86400000
+  scheduler:
+    pending-timeout-minutes: 15
+    pending-check-rate-ms: 300000
+    active-check-rate-ms: 1800000
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
 
 server:
   port: 8080

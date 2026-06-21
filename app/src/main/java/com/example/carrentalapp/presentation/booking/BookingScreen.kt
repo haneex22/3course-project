@@ -149,6 +149,13 @@ fun BookingScreen(
                 }
             }
 
+            // Состояние загрузки занятых периодов
+            if (busyPeriods.isEmpty() && catalogState.cars.isNotEmpty()) {
+                Box(Modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) {
+                    LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                }
+            }
+
             // Подсказка о занятых датах
             if (busyPeriods.isNotEmpty()) {
                 ElevatedCard(
@@ -167,6 +174,23 @@ fun BookingScreen(
                             Text("• ${formatRange(p)}", style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSecondaryContainer)
                         }
+                    }
+                }
+            }
+
+            // Пустое состояние — нет выбранных дат
+            if (startDateMs == null && endDateMs == null) {
+                Card(
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Column(modifier = Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            "Выберите даты начала и окончания аренды",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
                     }
                 }
             }
@@ -208,7 +232,8 @@ fun BookingScreen(
                             bookingViewModel.createBooking(
                                 car.id,
                                 msToLocalDateTimeString(startDateMs!!, LocalTime.of(10, 0)),
-                                msToLocalDateTimeString(endDateMs!!, LocalTime.of(23, 0))
+                                msToLocalDateTimeString(endDateMs!!, LocalTime.of(23, 0)),
+                                context
                             )
                         }
                     }
