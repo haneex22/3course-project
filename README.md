@@ -36,42 +36,61 @@
 ## Структура проекта
 ```
 📦 CarRentalApp
-├── 📱 app/              # Android-клиент
-│   ├── apiclient/       # Retrofit, API-интерфейсы, JWT-интерцептор
-│   ├── localcache/      # Room (AppDatabase, DAO, TokenStorage)
-│   ├── model/           # DTO для запросов/ответов
-│   ├── presentation/    # Экраны (Compose) + Navigation
-│   │   ├── admin/       # Панель управления автопарком
-│   │   ├── auth/        # Логин и регистрация
-│   │   ├── booking/     # Бронирование автомобиля
-│   │   ├── catalog/     # Каталог + детали авто
-│   │   ├── common/      # CarLabels, RentGoLogo
-│   │   └── profile/     # Профиль и бронирования
-│   ├── statemanagement/ # ViewModel + StateFlow
-│   └── ui/theme/        # Material 3 тема (светлая/тёмная)
+├── 📱 app/                          # Android-клиент
+│   ├── apiclient/                   # Retrofit, API-сервисы, JWT Interceptor
+│   ├── localcache/                  # Room (AppDatabase, DAO, TokenStorage)
+│   ├── model/                       # DTO запросов и ответов
+│   ├── presentation/                # UI (Jetpack Compose)
+│   │   ├── admin/                   # Панель администратора и менеджера
+│   │   ├── auth/                    # Авторизация и регистрация
+│   │   ├── booking/                 # Бронирование автомобиля
+│   │   ├── catalog/                 # Каталог и карточка автомобиля
+│   │   ├── common/                  # Общие UI-компоненты
+│   │   └── profile/                 # Профиль пользователя
+│   ├── statemanagement/             # ViewModel, StateFlow, MVVM
+│   └── ui/theme/                    # Material 3 (цвета, типографика, тема)
 │
-├── 🖥️ backend/          # Java Spring Boot сервер
-│   └── src/main/java/ru/skfu/carrental/
-│       ├── control/     # REST-контроллеры
-│       ├── mediator/    # Сервисы + Facade + Стратегии
-│       ├── entity/      # JPA-сущности + State-паттерн
-│       ├── foundation/  # JPA-репозитории
-│       ├── security/    # JWT, SecurityConfig
-│       ├── exception/   # GlobalExceptionHandler
-│       └── scheduler/   # Планировщик отмены броней
+├── 🖥️ backend/                      # Серверная часть (Spring Boot)
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/ru/skfu/carrental/
+│   │   │   │   ├── control/         # REST-контроллеры
+│   │   │   │   ├── mediator/        # Сервисы, Facade, Strategy
+│   │   │   │   ├── entity/          # JPA-сущности
+│   │   │   │   │   ├── enums/       # Перечисления
+│   │   │   │   │   └── state/       # Паттерн State
+│   │   │   │   ├── foundation/      # Spring Data JPA репозитории
+│   │   │   │   ├── security/        # JWT, SecurityConfig
+│   │   │   │   ├── exception/       # GlobalExceptionHandler
+│   │   │   │   ├── scheduler/       # Планировщик отмены просроченных броней
+│   │   │   │   └── dto/
+│   │   │   │       ├── request/     # DTO запросов
+│   │   │   │       └── response/    # DTO ответов
+│   │   │   └── resources/           # application.yml и ресурсы
+│   │   └── test/                    # Unit и Integration тесты
+│   └── target/                      # Артефакты сборки и отчёты JaCoCo
 │
-├── 📂 .github/workflows/  # GitHub Actions CI/CD
-├── 📚 docs/             # Документация проекта
-│   ├── 01-business-model/   # IDEF0, BUC, Глоссарий, SWOT, ROI
-│   ├── 02-requirements/     # Use Case, Domain Model, Спецификации
-│   ├── 03-architecture/     # PCMEF, Интерфейсы, ADR
-│   ├── 04-database/         # ER, DDL
-│   ├── 05-design/           # Sequence-диаграммы
-│   └── images/              # Рендереные диаграммы
-├── 📄 docs/presentation.md  # Презентация к защите
-├── 🐳 docker-compose.yml
-├── 📄 LICENSE
-└── 📖 README.md
+├── 📚 docs/                         # Документация проекта
+│   ├── 01-business-model/           # Паспорт проекта, IDEF0, BUC, SWOT, ROI
+│   ├── 02-requirements/             # Use Case, Domain Model, требования
+│   ├── 03-architecture/             # PCMEF, ADR, архитектурные решения
+│   ├── 04-database/                 # ER-диаграмма, DDL
+│   ├── 05-design/                   # Sequence, Class Diagram, GoF
+│   ├── 06-testing/                  # План тестирования, JaCoCo
+│   ├── 07-refactoring/              # Рефакторинг и паттерны
+│   ├── 08-ui/                       # Пользовательский интерфейс
+│   ├── 09-api/                      # Документация REST API
+│   ├── 10-deployment/               # Развёртывание и администрирование
+│   ├── 11-guides/                   # Руководство пользователя, менеджера и администратора
+│   ├── 12-project-management/       # Управление проектом
+│   ├── 13-final-report/             # Пояснительная записка и презентация
+│   ├── images/                      # Скриншоты и диаграммы
+│   └── presentation.md              # Презентация к защите
+│
+├── 📂 .github/workflows/            # GitHub Actions CI/CD
+├── 📄 README.md                     # Описание проекта
+├── 📄 LICENSE                       # Лицензия
+└── 🐳 docker-compose.yml            # Контейнеризация
 ```
 
 ## Быстрый старт 🚀
