@@ -12,7 +12,9 @@ public class WeekendPricingStrategy implements PricingStrategy {
     @Override
     public BigDecimal calculate(BigDecimal dailyRate, LocalDateTime startDateTime, LocalDateTime endDateTime) {
         long days = ChronoUnit.DAYS.between(startDateTime.toLocalDate(), endDateTime.toLocalDate());
-        if (days < 1) days = 1;
+        if (days < 1) {
+            days = 1;
+        }
         return dailyRate.multiply(BigDecimal.valueOf(days)).multiply(WEEKEND_MULTIPLIER);
     }
 

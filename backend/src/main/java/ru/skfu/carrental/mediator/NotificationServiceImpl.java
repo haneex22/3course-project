@@ -9,12 +9,12 @@ import java.util.logging.Logger;
 @Service
 public class NotificationServiceImpl implements NotificationService {
 
-    private static final Logger log = Logger.getLogger(NotificationServiceImpl.class.getName());
+    private static final Logger LOG = Logger.getLogger(NotificationServiceImpl.class.getName());
 
     @Override
     @Async
     public void sendBookingConfirmationAsync(UUID clientId, UUID reservationId) {
         // Stub: in production, send push notification or email
-        log.info("Booking confirmation sent to client " + clientId + " for reservation " + reservationId);
+        LOG.info("Booking confirmation sent to client " + clientId + " for reservation " + reservationId);
     }
 }

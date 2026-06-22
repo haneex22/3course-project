@@ -1,0 +1,365 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< ru.skfu:car-rental-backend >---------------------
+[INFO] Building car-rental-backend 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- checkstyle:3.3.1:check (default-cli) @ car-rental-backend ---
+[WARNING] src\main\java\ru\skfu\carrental\control\AdminController.java:[8,47] (imports) AvoidStarImport: Избегайте использование '.*' в import - org.springframework.web.bind.annotation.*.
+[WARNING] src\main\java\ru\skfu\carrental\control\AuthController.java:[6,47] (imports) AvoidStarImport: Избегайте использование '.*' в import - org.springframework.web.bind.annotation.*.
+[WARNING] src\main\java\ru\skfu\carrental\control\BookingController.java:[7,47] (imports) AvoidStarImport: Избегайте использование '.*' в import - org.springframework.web.bind.annotation.*.
+[WARNING] src\main\java\ru\skfu\carrental\control\CarController.java:[7,47] (imports) AvoidStarImport: Избегайте использование '.*' в import - org.springframework.web.bind.annotation.*.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\BookingRequest.java:[16,28] (blocks) LeftCurly: После символа '{' (28) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\BookingRequest.java:[17,38] (blocks) LeftCurly: После символа '{' (38) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\BookingRequest.java:[18,45] (blocks) LeftCurly: После символа '{' (45) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\BookingRequest.java:[19,63] (blocks) LeftCurly: После символа '{' (63) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\BookingRequest.java:[20,43] (blocks) LeftCurly: После символа '{' (43) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\BookingRequest.java:[21,59] (blocks) LeftCurly: После символа '{' (59) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\CarCreateRequest.java:[22,28] (blocks) LeftCurly: После символа '{' (28) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\CarCreateRequest.java:[23,36] (blocks) LeftCurly: После символа '{' (36) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\CarCreateRequest.java:[24,37] (blocks) LeftCurly: После символа '{' (37) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\CarCreateRequest.java:[25,54] (blocks) LeftCurly: После символа '{' (54) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\CarCreateRequest.java:[26,34] (blocks) LeftCurly: После символа '{' (34) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\CarCreateRequest.java:[27,48] (blocks) LeftCurly: После символа '{' (48) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\CarCreateRequest.java:[28,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\CarCreateRequest.java:[29,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\CarCreateRequest.java:[30,42] (blocks) LeftCurly: После символа '{' (42) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\CarCreateRequest.java:[31,60] (blocks) LeftCurly: После символа '{' (60) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\CarCreateRequest.java:[32,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\CarCreateRequest.java:[33,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\CarStatusUpdateRequest.java:[9,31] (blocks) LeftCurly: После символа '{' (31) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\CarStatusUpdateRequest.java:[10,42] (blocks) LeftCurly: После символа '{' (42) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\HandoverRequest.java:[18,37] (blocks) LeftCurly: После символа '{' (37) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\HandoverRequest.java:[19,56] (blocks) LeftCurly: После символа '{' (56) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\HandoverRequest.java:[20,42] (blocks) LeftCurly: После символа '{' (42) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\HandoverRequest.java:[21,63] (blocks) LeftCurly: После символа '{' (63) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\LoginRequest.java:[12,30] (blocks) LeftCurly: После символа '{' (30) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\LoginRequest.java:[13,40] (blocks) LeftCurly: После символа '{' (40) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\LoginRequest.java:[14,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\LoginRequest.java:[15,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\RegisterRequest.java:[15,30] (blocks) LeftCurly: После символа '{' (30) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\RegisterRequest.java:[16,40] (blocks) LeftCurly: После символа '{' (40) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\RegisterRequest.java:[17,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\RegisterRequest.java:[18,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\RegisterRequest.java:[19,40] (blocks) LeftCurly: После символа '{' (40) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\RegisterRequest.java:[20,60] (blocks) LeftCurly: После символа '{' (60) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\ReturnRequest.java:[18,35] (blocks) LeftCurly: После символа '{' (35) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\ReturnRequest.java:[19,52] (blocks) LeftCurly: После символа '{' (52) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\ReturnRequest.java:[20,40] (blocks) LeftCurly: После символа '{' (40) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\request\ReturnRequest.java:[21,59] (blocks) LeftCurly: После символа '{' (59) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[20,25] (blocks) LeftCurly: После символа '{' (25) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[21,32] (blocks) LeftCurly: После символа '{' (32) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[22,28] (blocks) LeftCurly: После символа '{' (28) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[23,38] (blocks) LeftCurly: После символа '{' (38) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[24,37] (blocks) LeftCurly: После символа '{' (37) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[25,54] (blocks) LeftCurly: После символа '{' (54) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[26,36] (blocks) LeftCurly: После символа '{' (36) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[27,52] (blocks) LeftCurly: После символа '{' (52) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[28,31] (blocks) LeftCurly: После символа '{' (31) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[29,44] (blocks) LeftCurly: После символа '{' (44) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[30,45] (blocks) LeftCurly: После символа '{' (45) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[31,63] (blocks) LeftCurly: После символа '{' (63) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[32,43] (blocks) LeftCurly: После символа '{' (43) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[33,59] (blocks) LeftCurly: После символа '{' (59) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[34,31] (blocks) LeftCurly: После символа '{' (31) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[35,42] (blocks) LeftCurly: После символа '{' (42) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[36,35] (blocks) LeftCurly: После символа '{' (35) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[37,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[38,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[39,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[40,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AdminBookingResponse.java:[41,55] (blocks) LeftCurly: После символа '{' (55) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AuthResponse.java:[16,30] (blocks) LeftCurly: После символа '{' (30) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AuthResponse.java:[17,30] (blocks) LeftCurly: После символа '{' (30) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AuthResponse.java:[18,29] (blocks) LeftCurly: После символа '{' (29) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\AuthResponse.java:[19,31] (blocks) LeftCurly: После символа '{' (31) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\BusyPeriodResponse.java:[16,45] (blocks) LeftCurly: После символа '{' (45) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\BusyPeriodResponse.java:[17,63] (blocks) LeftCurly: После символа '{' (63) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\BusyPeriodResponse.java:[18,43] (blocks) LeftCurly: После символа '{' (43) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\BusyPeriodResponse.java:[19,59] (blocks) LeftCurly: После символа '{' (59) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[16,25] (blocks) LeftCurly: После символа '{' (25) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[17,32] (blocks) LeftCurly: После символа '{' (32) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[18,34] (blocks) LeftCurly: После символа '{' (34) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[19,48] (blocks) LeftCurly: После символа '{' (48) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[20,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[21,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[22,42] (blocks) LeftCurly: После символа '{' (42) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[23,60] (blocks) LeftCurly: После символа '{' (60) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[24,31] (blocks) LeftCurly: После символа '{' (31) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[25,42] (blocks) LeftCurly: После символа '{' (42) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[26,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[27,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[28,37] (blocks) LeftCurly: После символа '{' (37) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[29,54] (blocks) LeftCurly: После символа '{' (54) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[30,28] (blocks) LeftCurly: После символа '{' (28) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\CarResponse.java:[31,36] (blocks) LeftCurly: После символа '{' (36) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ErrorResponse.java:[16,32] (blocks) LeftCurly: После символа '{' (32) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ErrorResponse.java:[17,28] (blocks) LeftCurly: После символа '{' (28) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ErrorResponse.java:[18,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[19,25] (blocks) LeftCurly: После символа '{' (25) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[20,32] (blocks) LeftCurly: После символа '{' (32) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[21,36] (blocks) LeftCurly: После символа '{' (36) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[22,54] (blocks) LeftCurly: После символа '{' (54) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[23,40] (blocks) LeftCurly: После символа '{' (40) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[24,60] (blocks) LeftCurly: После символа '{' (60) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[25,40] (blocks) LeftCurly: После символа '{' (40) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[26,53] (blocks) LeftCurly: После символа '{' (53) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[27,37] (blocks) LeftCurly: После символа '{' (37) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[28,56] (blocks) LeftCurly: После символа '{' (56) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[29,38] (blocks) LeftCurly: После символа '{' (38) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[30,59] (blocks) LeftCurly: После символа '{' (59) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[31,35] (blocks) LeftCurly: После символа '{' (35) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[32,52] (blocks) LeftCurly: После символа '{' (52) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[33,36] (blocks) LeftCurly: После символа '{' (36) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[34,55] (blocks) LeftCurly: После символа '{' (55) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[35,31] (blocks) LeftCurly: После символа '{' (31) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[36,43] (blocks) LeftCurly: После символа '{' (43) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[37,37] (blocks) LeftCurly: После символа '{' (37) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[38,54] (blocks) LeftCurly: После символа '{' (54) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[39,36] (blocks) LeftCurly: После символа '{' (36) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\RentalAgreementResponse.java:[40,52] (blocks) LeftCurly: После символа '{' (52) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[18,25] (blocks) LeftCurly: После символа '{' (25) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[19,32] (blocks) LeftCurly: После символа '{' (32) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[20,28] (blocks) LeftCurly: После символа '{' (28) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[21,38] (blocks) LeftCurly: После символа '{' (38) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[22,37] (blocks) LeftCurly: После символа '{' (37) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[23,54] (blocks) LeftCurly: После символа '{' (54) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[24,45] (blocks) LeftCurly: После символа '{' (45) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[25,63] (blocks) LeftCurly: После символа '{' (63) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[26,43] (blocks) LeftCurly: После символа '{' (43) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[27,59] (blocks) LeftCurly: После символа '{' (59) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[28,31] (blocks) LeftCurly: После символа '{' (31) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[29,42] (blocks) LeftCurly: После символа '{' (42) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[30,35] (blocks) LeftCurly: После символа '{' (35) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[31,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[32,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[33,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[34,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\ReservationResponse.java:[35,55] (blocks) LeftCurly: После символа '{' (55) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\UnverifiedClientResponse.java:[14,29] (blocks) LeftCurly: После символа '{' (29) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\UnverifiedClientResponse.java:[15,40] (blocks) LeftCurly: После символа '{' (40) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\UnverifiedClientResponse.java:[16,30] (blocks) LeftCurly: После символа '{' (30) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\UnverifiedClientResponse.java:[17,40] (blocks) LeftCurly: После символа '{' (40) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\UnverifiedClientResponse.java:[18,39] (blocks) LeftCurly: После символа '{' (39) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\UnverifiedClientResponse.java:[19,58] (blocks) LeftCurly: После символа '{' (58) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\UnverifiedClientResponse.java:[20,39] (blocks) LeftCurly: После символа '{' (39) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\UnverifiedClientResponse.java:[21,58] (blocks) LeftCurly: После символа '{' (58) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\UnverifiedClientResponse.java:[22,38] (blocks) LeftCurly: После символа '{' (38) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\UnverifiedClientResponse.java:[23,56] (blocks) LeftCurly: После символа '{' (56) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\UnverifiedClientResponse.java:[24,48] (blocks) LeftCurly: После символа '{' (48) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\dto\response\UnverifiedClientResponse.java:[25,69] (blocks) LeftCurly: После символа '{' (69) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[3,27] (imports) AvoidStarImport: Избегайте использование '.*' в import - jakarta.persistence.*.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[52,25] (blocks) LeftCurly: После символа '{' (25) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[53,32] (blocks) LeftCurly: После символа '{' (32) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[54,28] (blocks) LeftCurly: После символа '{' (28) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[55,36] (blocks) LeftCurly: После символа '{' (36) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[56,37] (blocks) LeftCurly: После символа '{' (37) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[57,54] (blocks) LeftCurly: После символа '{' (54) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[58,34] (blocks) LeftCurly: После символа '{' (34) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[59,48] (blocks) LeftCurly: После символа '{' (48) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[60,37] (blocks) LeftCurly: После символа '{' (37) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[61,56] (blocks) LeftCurly: После символа '{' (56) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[62,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[63,65] (blocks) LeftCurly: После символа '{' (65) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[64,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[65,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[66,42] (blocks) LeftCurly: После символа '{' (42) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[67,60] (blocks) LeftCurly: После символа '{' (60) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[68,34] (blocks) LeftCurly: После символа '{' (34) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[69,45] (blocks) LeftCurly: После символа '{' (45) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[70,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[71,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[72,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Car.java:[73,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[3,27] (imports) AvoidStarImport: Избегайте использование '.*' в import - jakarta.persistence.*.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[42,29] (blocks) LeftCurly: После символа '{' (29) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[43,40] (blocks) LeftCurly: После символа '{' (40) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[44,27] (blocks) LeftCurly: После символа '{' (27) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[45,36] (blocks) LeftCurly: После символа '{' (36) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[46,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[47,47] (blocks) LeftCurly: После символа '{' (47) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[48,34] (blocks) LeftCurly: После символа '{' (34) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[49,51] (blocks) LeftCurly: После символа '{' (51) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[50,39] (blocks) LeftCurly: После символа '{' (39) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[51,58] (blocks) LeftCurly: После символа '{' (58) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[52,39] (blocks) LeftCurly: После символа '{' (39) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[53,58] (blocks) LeftCurly: После символа '{' (58) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[54,38] (blocks) LeftCurly: После символа '{' (38) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[55,56] (blocks) LeftCurly: После символа '{' (56) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[56,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\ClientProfile.java:[57,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Money.java:[19,35] (blocks) LeftCurly: После символа '{' (35) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Money.java:[20,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Money.java:[21,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Money.java:[22,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[3,27] (imports) AvoidStarImport: Избегайте использование '.*' в import - jakarta.persistence.*.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[44,25] (blocks) LeftCurly: После символа '{' (25) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[45,32] (blocks) LeftCurly: После символа '{' (32) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[46,49] (blocks) LeftCurly: После символа '{' (49) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[47,69] (blocks) LeftCurly: После символа '{' (69) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[48,38] (blocks) LeftCurly: После символа '{' (38) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[49,56] (blocks) LeftCurly: После символа '{' (56) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[50,32] (blocks) LeftCurly: После символа '{' (32) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[51,45] (blocks) LeftCurly: После символа '{' (45) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[52,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[53,57] (blocks) LeftCurly: После символа '{' (57) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[54,35] (blocks) LeftCurly: После символа '{' (35) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[55,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[56,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[57,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[58,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Payment.java:[59,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[3,27] (imports) AvoidStarImport: Избегайте использование '.*' в import - jakarta.persistence.*.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[47,25] (blocks) LeftCurly: После символа '{' (25) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[48,32] (blocks) LeftCurly: После символа '{' (32) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[49,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[50,57] (blocks) LeftCurly: После символа '{' (57) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[51,40] (blocks) LeftCurly: После символа '{' (40) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[52,60] (blocks) LeftCurly: После символа '{' (60) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[53,40] (blocks) LeftCurly: После символа '{' (40) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[54,53] (blocks) LeftCurly: После символа '{' (53) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[55,37] (blocks) LeftCurly: После символа '{' (37) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[56,56] (blocks) LeftCurly: После символа '{' (56) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[57,38] (blocks) LeftCurly: После символа '{' (38) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[58,59] (blocks) LeftCurly: После символа '{' (59) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[59,35] (blocks) LeftCurly: После символа '{' (35) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[60,52] (blocks) LeftCurly: После символа '{' (52) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[61,40] (blocks) LeftCurly: После символа '{' (40) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[62,59] (blocks) LeftCurly: После символа '{' (59) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[63,31] (blocks) LeftCurly: После символа '{' (31) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[64,43] (blocks) LeftCurly: После символа '{' (43) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[65,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[66,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\RentalAgreement.java:[67,55] (blocks) LeftCurly: После символа '{' (55) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[3,27] (imports) AvoidStarImport: Избегайте использование '.*' в import - jakarta.persistence.*.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[5,38] (imports) AvoidStarImport: Избегайте использование '.*' в import - ru.skfu.carrental.entity.state.*.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[58,25] (blocks) LeftCurly: После символа '{' (25) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[59,32] (blocks) LeftCurly: После символа '{' (32) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[60,31] (blocks) LeftCurly: После символа '{' (31) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[61,44] (blocks) LeftCurly: После символа '{' (44) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[62,25] (blocks) LeftCurly: После символа '{' (25) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[63,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[64,45] (blocks) LeftCurly: После символа '{' (45) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[65,63] (blocks) LeftCurly: После символа '{' (63) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[66,43] (blocks) LeftCurly: После символа '{' (43) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[67,59] (blocks) LeftCurly: После символа '{' (59) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[68,42] (blocks) LeftCurly: После символа '{' (42) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[69,53] (blocks) LeftCurly: После символа '{' (53) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[70,35] (blocks) LeftCurly: После символа '{' (35) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[71,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[72,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[73,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[74,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[75,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\Reservation.java:[76,55] (blocks) LeftCurly: После символа '{' (55) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[3,27] (imports) AvoidStarImport: Избегайте использование '.*' в import - jakarta.persistence.*.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[50,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[53,33] (blocks) LeftCurly: После символа '{' (33) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[56,42] (blocks) LeftCurly: После символа '{' (42) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[59,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[62,46] (blocks) LeftCurly: После символа '{' (46) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[65,32] (blocks) LeftCurly: После символа '{' (32) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[67,25] (blocks) LeftCurly: После символа '{' (25) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[68,32] (blocks) LeftCurly: После символа '{' (32) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[69,30] (blocks) LeftCurly: После символа '{' (30) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[70,40] (blocks) LeftCurly: После символа '{' (40) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[71,37] (blocks) LeftCurly: После символа '{' (37) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[72,54] (blocks) LeftCurly: После символа '{' (54) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[73,31] (blocks) LeftCurly: После символа '{' (31) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[74,40] (blocks) LeftCurly: После символа '{' (40) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[75,48] (blocks) LeftCurly: После символа '{' (48) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[76,69] (blocks) LeftCurly: После символа '{' (69) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[77,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[78,41] (blocks) LeftCurly: После символа '{' (41) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[79,45] (blocks) LeftCurly: После символа '{' (45) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\entity\User.java:[80,63] (blocks) LeftCurly: После символа '{' (63) нужен перевод строки.
+[WARNING] src\main\java\ru\skfu\carrental\mediator\NotificationServiceImpl.java:[12,33] (naming) ConstantName: Имя 'log' должно соответствовать шаблону '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.
+[WARNING] src\main\java\ru\skfu\carrental\mediator\ReservationServiceImpl.java:[22,8] (imports) UnusedImports: Неиспользуемый import - ru.skfu.carrental.dto.response.RentalAgreementResponse.
+[WARNING] src\main\java\ru\skfu\carrental\mediator\StandardPricingStrategy.java:[12,9] (blocks) NeedBraces: В конструкции 'if' должны использоваться '{}'.
+[WARNING] src\main\java\ru\skfu\carrental\mediator\WeekendPricingStrategy.java:[15,9] (blocks) NeedBraces: В конструкции 'if' должны использоваться '{}'.
+[WARNING] src\main\java\ru\skfu\carrental\scheduler\ReservationCancellationScheduler.java:[23,33] (naming) ConstantName: Имя 'log' должно соответствовать шаблону '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.
+[WARNING] src\test\java\ru\skfu\carrental\AuthServiceTest.java:[31,34] (imports) AvoidStarImport: Избегайте использование '.*' в import - org.mockito.Mockito.*.
+[WARNING] src\test\java\ru\skfu\carrental\AuthServiceTest.java:[75,10] (naming) MethodName: Имя 'login_success_returnsAuthResponse' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\AuthServiceTest.java:[91,10] (naming) MethodName: Имя 'login_invalidCredentials_throwsBadCredentialsException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\AuthServiceTest.java:[100,10] (naming) MethodName: Имя 'register_success_createsUserAndProfile' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\AuthServiceTest.java:[118,10] (naming) MethodName: Имя 'register_passwordsDoNotMatch_throwsIllegalArgumentException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\AuthServiceTest.java:[129,10] (naming) MethodName: Имя 'register_emailAlreadyExists_throwsEmailAlreadyExistsException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\AuthServiceTest.java:[140,10] (naming) MethodName: Имя 'register_newUserGetsClientRoleAndVerifiedProfile' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\CarControllerIntegrationTest.java:[19,80] (imports) AvoidStarImport: Избегайте использование '.*' в import - org.springframework.test.web.servlet.result.MockMvcResultMatchers.*.
+[WARNING] src\test\java\ru\skfu\carrental\CarControllerIntegrationTest.java:[54,10] (naming) MethodName: Имя 'getCars_authorized_returns200' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\CarControllerIntegrationTest.java:[62,10] (naming) MethodName: Имя 'getCarById_nonExistent_returns404' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceExtendedTest.java:[10,8] (imports) UnusedImports: Неиспользуемый import - ru.skfu.carrental.entity.enums.ReservationStatus.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceExtendedTest.java:[11,8] (imports) UnusedImports: Неиспользуемый import - ru.skfu.carrental.exception.CarNotAvailableException.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceExtendedTest.java:[17,8] (imports) UnusedImports: Неиспользуемый import - java.time.LocalDateTime.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceExtendedTest.java:[22,15] (imports) UnusedImports: Неиспользуемый import - org.assertj.core.api.Assertions.assertThatThrownBy.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceExtendedTest.java:[40,10] (naming) MethodName: Имя 'updateCarStatus_toMaintenance_returnsUpdatedCar' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceExtendedTest.java:[63,10] (naming) MethodName: Имя 'getAllCars_returnsAllCars' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceExtendedTest.java:[73,10] (naming) MethodName: Имя 'createCar_success_returnsCreatedCar' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceTest.java:[25,15] (imports) UnusedImports: Неиспользуемый import - org.mockito.ArgumentMatchers.any.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceTest.java:[64,10] (naming) MethodName: Имя 'findAvailableCars_noFilters_returnsAllAvailable' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceTest.java:[73,10] (naming) MethodName: Имя 'findAvailableCars_withClassFilter_returnsFiltered' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceTest.java:[83,10] (naming) MethodName: Имя 'findAvailableCars_withDates_callsAvailableQuery' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceTest.java:[94,10] (naming) MethodName: Имя 'getCarById_existingId_returnsCar' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceTest.java:[103,10] (naming) MethodName: Имя 'getCarById_notFound_throwsException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceUpdateTest.java:[25,34] (imports) AvoidStarImport: Избегайте использование '.*' в import - org.mockito.Mockito.*.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceUpdateTest.java:[59,10] (naming) MethodName: Имя 'updateCar_success_updatesAllEditableFields' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceUpdateTest.java:[84,10] (naming) MethodName: Имя 'updateCar_carNotFound_throwsException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\CarServiceUpdateTest.java:[99,10] (naming) MethodName: Имя 'updateCar_keepsNonEditableFieldsUnchanged' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\GlobalExceptionHandlerTest.java:[7,8] (imports) UnusedImports: Неиспользуемый import - org.springframework.web.bind.MethodArgumentNotValidException.
+[WARNING] src\test\java\ru\skfu\carrental\GlobalExceptionHandlerTest.java:[9,35] (imports) AvoidStarImport: Избегайте использование '.*' в import - ru.skfu.carrental.exception.*.
+[WARNING] src\test\java\ru\skfu\carrental\GlobalExceptionHandlerTest.java:[19,10] (naming) MethodName: Имя 'handleCarNotAvailable_returnsConflict' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\GlobalExceptionHandlerTest.java:[30,10] (naming) MethodName: Имя 'handleUserNotVerified_returnsForbidden' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\GlobalExceptionHandlerTest.java:[40,10] (naming) MethodName: Имя 'handleGatewayError_returnsBadGateway' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\GlobalExceptionHandlerTest.java:[49,10] (naming) MethodName: Имя 'handleEmailExists_returnsConflict' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\GlobalExceptionHandlerTest.java:[58,10] (naming) MethodName: Имя 'handleIllegalArgument_returnsBadRequest' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\GlobalExceptionHandlerTest.java:[69,10] (naming) MethodName: Имя 'handleRuntime_returnsInternalServerError' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\GlobalExceptionHandlerTest.java:[78,10] (naming) MethodName: Имя 'handleDataIntegrity_licensePlateConflict_returnsSpecificMessage' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\GlobalExceptionHandlerTest.java:[90,10] (naming) MethodName: Имя 'handleDataIntegrity_vinConflict_returnsSpecificMessage' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\PricingStrategyTest.java:[19,10] (naming) MethodName: Имя 'standardStrategy_singleDay_returnsOneDayRate' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\PricingStrategyTest.java:[30,10] (naming) MethodName: Имя 'standardStrategy_threeDays_returnsTripleRate' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\PricingStrategyTest.java:[41,10] (naming) MethodName: Имя 'weekendStrategy_appliesTwentyPercentMarkup' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\PricingStrategyTest.java:[53,10] (naming) MethodName: Имя 'weekendStrategy_threeDaysWithWeekend_appliesMarkupToAll' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\PricingStrategyTest.java:[64,10] (naming) MethodName: Имя 'hasWeekend_weekdaysOnly_returnsFalse' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\PricingStrategyTest.java:[72,10] (naming) MethodName: Имя 'hasWeekend_includesSaturday_returnsTrue' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceExtendedTest.java:[25,34] (imports) AvoidStarImport: Избегайте использование '.*' в import - org.mockito.Mockito.*.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceExtendedTest.java:[41,10] (naming) MethodName: Имя 'getClientReservations_returnsOrderedList' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceExtendedTest.java:[66,10] (naming) MethodName: Имя 'cancelReservation_otherClient_throwsException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceExtendedTest.java:[83,10] (naming) MethodName: Имя 'cancelReservation_alreadyCancelled_throwsException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceExtendedTest.java:[99,10] (naming) MethodName: Имя 'cancelReservation_alreadyCompleted_throwsException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceExtendedTest.java:[115,10] (naming) MethodName: Имя 'cancelReservation_internal_success' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceExtendedTest.java:[135,10] (naming) MethodName: Имя 'getBusyPeriods_returnsActiveReservations' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceHandoverReturnTest.java:[28,34] (imports) AvoidStarImport: Избегайте использование '.*' в import - org.mockito.Mockito.*.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceHandoverReturnTest.java:[85,10] (naming) MethodName: Имя 'handoverCar_success_createsAgreementAndSetsCarRented' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceHandoverReturnTest.java:[107,10] (naming) MethodName: Имя 'handoverCar_notConfirmed_throwsException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceHandoverReturnTest.java:[123,10] (naming) MethodName: Имя 'handoverCar_wrongStatus_throwsException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceHandoverReturnTest.java:[132,10] (naming) MethodName: Имя 'handoverCar_reservationNotFound_throwsException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceHandoverReturnTest.java:[143,10] (naming) MethodName: Имя 'returnCar_success_completesRentalAndSetsCarAvailable' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceHandoverReturnTest.java:[166,10] (naming) MethodName: Имя 'returnCar_notActive_throwsException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceHandoverReturnTest.java:[175,10] (naming) MethodName: Имя 'returnCar_noAgreement_throwsException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceHandoverReturnTest.java:[185,10] (naming) MethodName: Имя 'returnCar_reservationNotFound_throwsException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceTest.java:[24,8] (imports) UnusedImports: Неиспользуемый import - java.util.List.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceTest.java:[31,34] (imports) AvoidStarImport: Избегайте использование '.*' в import - org.mockito.Mockito.*.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceTest.java:[72,10] (naming) MethodName: Имя 'bookCar_success_createsReservation' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceTest.java:[88,10] (naming) MethodName: Имя 'bookCar_unverifiedClient_throwsUserNotVerifiedException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceTest.java:[97,10] (naming) MethodName: Имя 'bookCar_maintenanceCar_throwsCarNotAvailableException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationServiceTest.java:[109,10] (naming) MethodName: Имя 'bookCar_dateConflict_throwsCarNotAvailableException' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationStateTest.java:[7,38] (imports) AvoidStarImport: Избегайте использование '.*' в import - ru.skfu.carrental.entity.state.*.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationStateTest.java:[30,10] (naming) MethodName: Имя 'pendingState_confirmPayment_transitionsToConfirmed' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationStateTest.java:[36,10] (naming) MethodName: Имя 'pendingState_cancel_transitionsToCancelled' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationStateTest.java:[42,10] (naming) MethodName: Имя 'pendingState_handoverCar_throwsIllegalState' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationStateTest.java:[48,10] (naming) MethodName: Имя 'confirmedState_handoverCar_transitionsToActive' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationStateTest.java:[55,10] (naming) MethodName: Имя 'confirmedState_cancel_transitionsToCancelled' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationStateTest.java:[62,10] (naming) MethodName: Имя 'activeState_cancel_throwsIllegalState' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationStateTest.java:[69,10] (naming) MethodName: Имя 'cancelledState_anyAction_throwsIllegalState' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\ReservationStateTest.java:[76,10] (naming) MethodName: Имя 'reservationGetState_returnsCorrectStateForEachStatus' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\SecurityConfigTest.java:[24,10] (naming) MethodName: Имя 'swaggerApiDocs_shouldBePublic' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] src\test\java\ru\skfu\carrental\SecurityConfigTest.java:[30,10] (naming) MethodName: Имя 'swaggerUiIndex_shouldBeAccessible' должно соответствовать шаблону '^[a-z][a-zA-Z0-9]*$'.
+[WARNING] checkstyle:check violations detected but failOnViolation set to false
+[INFO] You have 349 Checkstyle violations.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.187 s
+[INFO] Finished at: 2026-06-22T13:47:51+03:00
+[INFO] ------------------------------------------------------------------------

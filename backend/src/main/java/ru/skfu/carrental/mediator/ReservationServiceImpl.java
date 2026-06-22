@@ -19,7 +19,6 @@ import ru.skfu.carrental.foundation.ReservationRepository;
 import ru.skfu.carrental.foundation.RentalAgreementRepository;
 import ru.skfu.carrental.foundation.UserRepository;
 import ru.skfu.carrental.entity.RentalAgreement;
-import ru.skfu.carrental.dto.response.RentalAgreementResponse;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

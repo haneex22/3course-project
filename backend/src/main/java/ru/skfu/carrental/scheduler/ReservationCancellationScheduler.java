@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 @Component
 public class ReservationCancellationScheduler {
 
-    private static final Logger log = Logger.getLogger(ReservationCancellationScheduler.class.getName());
+    private static final Logger LOG = Logger.getLogger(ReservationCancellationScheduler.class.getName());
 
     private final ReservationRepository reservationRepository;
     private final CarRepository carRepository;
@@ -45,7 +45,7 @@ public class ReservationCancellationScheduler {
             if (reservation.getCar() != null) {
                 reservation.getCar().setStatus(CarStatus.AVAILABLE);
             }
-            log.info("Auto-cancelled PENDING reservation: " + reservation.getId());
+            LOG.info("Auto-cancelled PENDING reservation: " + reservation.getId());
         }
 
         if (!expired.isEmpty()) {
@@ -55,7 +55,7 @@ public class ReservationCancellationScheduler {
                 .filter(c -> c != null)
                 .collect(Collectors.toList());
             carRepository.saveAll(carsToUpdate);
-            log.info("Auto-cancelled " + expired.size() + " expired reservations");
+            LOG.info("Auto-cancelled " + expired.size() + " expired reservations");
         }
     }
 
@@ -70,7 +70,7 @@ public class ReservationCancellationScheduler {
                 if (reservation.getCar() != null) {
                     reservation.getCar().setStatus(CarStatus.AVAILABLE);
                 }
-                log.info("Auto-completed reservation " + reservation.getId() + ", car returned to AVAILABLE");
+                LOG.info("Auto-completed reservation " + reservation.getId() + ", car returned to AVAILABLE");
             }
             reservationRepository.saveAll(expired);
             List<Car> carsToUpdate = expired.stream()
@@ -78,7 +78,7 @@ public class ReservationCancellationScheduler {
                 .filter(c -> c != null)
                 .collect(Collectors.toList());
             carRepository.saveAll(carsToUpdate);
-            log.info("Auto-completed " + expired.size() + " finished reservations");
+            LOG.info("Auto-completed " + expired.size() + " finished reservations");
         }
     }
 }
