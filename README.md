@@ -136,14 +136,15 @@ mvn spring-boot:run
 
 - 👨‍💻 Разработчик: Джабраилов (1 контрибьютор)  
 - 📅 Период: 15.02.2026 – 01.06.2026.  
-- 📝 Коммитов: 30  
+- 📝 Коммитов: 32  
 - 👨‍💻 Покрытие тестами (Jacoco): 65%
 
 📸 Скриншоты GitHub
 
 > Commit Activity
+![Commit Activity](docs\images\git-commit-activity.png)
 > Punch Card
-
+![Punch Card](docs\images\git-punch-card.png)
 ---
 
 ## Архитектура (PCMEF) 🏗️
