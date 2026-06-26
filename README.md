@@ -142,9 +142,9 @@ mvn spring-boot:run
 📸 Скриншоты GitHub
 
 > Commit Activity
-![Commit Activity](docs\images\git-commit-activity.png)
+![](docs/images/git-commit-activity.png)
 > Punch Card
-![Punch Card](docs\images\git-punch-card.png)
+![](docs/images/git-punch-card.png)
 ---
 
 ## Архитектура (PCMEF) 🏗️
